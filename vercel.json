@@ -1,17 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "echo 'Static build complete'",
+  "buildCommand": "# This is a static site",
   "outputDirectory": "src",
-  "env": {
-    "VERCEL_ENV": "production"
-  },
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html",
-      "status": 200
-    }
-  ],
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
@@ -29,9 +19,16 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=3600"
+          "value": "public, max-age=0, must-revalidate"
         }
       ]
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }
+
