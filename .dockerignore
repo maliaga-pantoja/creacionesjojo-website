@@ -1,0 +1,14 @@
+# This file specifies which files and directories should be ignored by Docker when building the image.
+
+node_modules
+npm-debug.log
+Dockerfile
+docker-compose.yml
+.git
+.gitignore
+README.md
+src/assets/fonts/*.ttf
+src/assets/fonts/*.woff
+src/assets/fonts/*.woff2
+src/css/*.map
+src/js/*.map
