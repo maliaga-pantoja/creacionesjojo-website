@@ -1,55 +1,97 @@
-# My Website
+# ScalePrints - 3D Printing Services Website
 
-This project is a simple website built using vanilla JavaScript and HTML5. It is designed to be developed within a Docker container and includes a GitHub Actions pipeline for building the Docker image and deploying the application.
+Este proyecto es un sitio web profesional construido con HTML5, CSS3 y JavaScript vanilla. Utiliza un contenedor Docker para desarrollo y está configurado para despliegue automático en Vercel mediante GitHub Actions.
 
-## Project Structure
+## Estructura del Proyecto
 
 ```
 my-website
 ├── src
-│   ├── index.html         # Main HTML document
+│   ├── index.html              # Página principal responsiva
 │   ├── css
-│   │   └── styles.css     # Styles for the website
+│   │   └── styles.css          # Estilos (Tailwind CSS)
 │   ├── js
-│   │   └── main.js        # Main JavaScript code
+│   │   └── main.js             # Lógica JavaScript
 │   └── assets
-│       └── fonts          # Font files used in the website
-├── .github
-│   └── workflows
-│       └── build-and-deploy.yml  # GitHub Actions workflow for CI/CD
-├── Dockerfile              # Instructions for building the Docker image
-├── docker-compose.yml      # Docker services configuration
-├── .dockerignore           # Files to ignore when building the Docker image
-├── .gitignore              # Files to ignore in Git
-└── README.md               # Project documentation
+│       └── fonts               # Fuentes tipográficas
+├── stitch
+│   ├── 01-scaleprints-violeta-neon.html
+│   ├── 01-scaleprints-violeta-neon.png
+│   ├── 02-scaleprints-mobile-whatsapp.html
+│   └── 02-scaleprints-mobile-whatsapp.png
+├── .github/workflows
+│   └── build-and-deploy.yml    # Pipeline CI/CD para Vercel
+├── Dockerfile                  # Configuración Docker
+├── docker-compose.yml          # Orquestación Docker
+├── vercel.json                 # Configuración Vercel
+├── .vercelignore               # Archivos a ignorar en Vercel
+├── Makefile                    # Comandos útiles
+└── README.md                   # Este archivo
 ```
 
-## Getting Started
+## Inicio Rápido
 
-To get started with this project, follow these steps:
+### Desarrollo Local con Docker
 
-1. **Clone the repository**:
-   ```
-   git clone <repository-url>
-   cd my-website
-   ```
+```bash
+# Clonar el repositorio
+git clone <repository-url>
+cd my-website
 
-2. **Build the Docker image**:
-   ```
-   docker-compose build
-   ```
+# Iniciar contenedor con Nginx
+make run
 
-3. **Run the application**:
-   ```
-   docker-compose up
-   ```
+# Acceder al sitio
+# http://localhost:3000
+```
 
-4. **Access the website**:
-   Open your browser and navigate to `http://localhost:8080`.
+**Comandos disponibles:**
+- `make run` - Inicia el contenedor nginx
+- `make stop` - Detiene el contenedor
+- `make clean` - Elimina el contenedor
 
-## Deployment
+### Desarrollo sin Docker
 
-The application is set up with a GitHub Actions workflow that automatically builds and deploys the Docker image whenever changes are pushed to the main branch. 
+```bash
+# Solo necesitas un servidor HTTP simple
+python -m http.server 3000 -d src
+# http://localhost:3000
+```
+
+## Despliegue en Vercel
+
+### Opción 1: Conexión Git Automática (Recomendado)
+
+1. **Ir a [Vercel](https://vercel.com)** y crear una cuenta
+2. **Conectar tu repositorio GitHub**:
+   - Click en "Add New..." → "Project"
+   - Selecciona tu repositorio
+   - Vercel detectará automáticamente la configuración de `vercel.json`
+3. **Configurar variables de entorno** (si aplica)
+4. **Desplegar**: Click en "Deploy"
+
+**Despliegues automáticos**: Cada push a `main` o `feature/*` desplegará automáticamente.
+
+### Opción 2: CLI de Vercel
+
+```bash
+# Instalar Vercel CLI
+npm install -g vercel
+
+# Desplegar desde el directorio del proyecto
+vercel
+
+# Desplegar en producción (necesita confirmación)
+vercel --prod
+```
+
+### Opción 3: GitHub Actions
+
+El archivo `.github/workflows/build-and-deploy.yml` despliega automáticamente en Vercel cuando haces push.
+
+## Despliegue
+
+La aplicación está configurada con GitHub Actions que automáticamente construye y despliega cuando haces push a las ramas principales. 
 
 ## Contributing
 

@@ -1,41 +1,58 @@
-name: Build and Deploy
+name: Build and Deploy to Vercel
 
 on:
   push:
+    branches:
+      - main
+      - feature/**
+  pull_request:
     branches:
       - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Build
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Build Docker image
+      - name: Validate HTML
         run: |
-          docker build -t my-website .
+          # Validar que index.html existe
+          [ -f src/index.html ] || exit 1
+          echo "✓ HTML files validated"
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Push Docker image
+      - name: Check structure
         run: |
-          docker tag my-website myusername/my-website:latest
-          docker push myusername/my-website:latest
+          echo "Checking project structure..."
+          ls -la src/
+          [ -f src/index.html ] && echo "✓ index.html found" || exit 1
+          [ -f src/css/styles.css ] && echo "✓ styles.css found" || exit 1
+          [ -f src/js/main.js ] && echo "✓ main.js found" || exit 1
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    if: github.event_name == 'push'
+    name: Deploy to Vercel
 
     steps:
-      - name: Deploy to server
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./
+          production: ${{ github.ref == 'refs/heads/main' }}
+
+      - name: Deployment Status
+        if: always()
         run: |
-          ssh user@your-server "docker pull myusername/my-website:latest && docker run -d -p 80:80 myusername/my-website:latest"
+          echo "Deployment completed"
+          echo "Visit your site at: https://YOUR_VERCEL_URL"
