@@ -13,7 +13,7 @@ help:
 
 run:
 	docker run -d --name $(CONTAINER_NAME) -p $(PORT_HOST):$(PORT_CONTAINER) \
-		 -v $(PWD)/stitch:/usr/share/nginx/html $(IMAGE)
+		 -v $(PWD)/src:/usr/share/nginx/html $(IMAGE)
 	
 stop:
 	docker stop $(CONTAINER_NAME) || true
