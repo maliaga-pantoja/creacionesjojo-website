@@ -1,457 +1,605 @@
 <!DOCTYPE html>
-<html class="" lang="es">
+
+<html class="light" lang="es">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>ScalePrints - Impresión 3D con Onda</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Inversiones Jojo - Impresión 3D y Corte Láser</title>
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind Config -->
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#9d00ff",
-                        "secondary": "#0d9488",
-                        "accent": "#bc13fe",
-                        "background-light": "#ffffff",
-                        "background-dark": "#0f172a",
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"]
+                        "inverse-primary": "#c8c6c5",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#e4e2e1",
+                        "outline": "#747878",
+                        "primary": "#000000",
+                        "on-primary-container": "#858383",
+                        "on-surface-variant": "#444748",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "inverse-on-surface": "#f1f1f1",
+                        "on-surface": "#1a1c1c",
+                        "surface-container-low": "#f3f3f3",
+                        "secondary": "#a33800",
+                        "on-secondary-fixed-variant": "#802a00",
+                        "secondary-fixed": "#ffdbce",
+                        "surface-tint": "#5f5e5e",
+                        "secondary-container": "#cd4800",
+                        "secondary-fixed-dim": "#ffb59a",
+                        "primary-fixed": "#e5e2e1",
+                        "on-secondary-fixed": "#370e00",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-tertiary-container": "#858383",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#dadada",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "on-background": "#1a1c1c",
+                        "primary-container": "#1c1b1b",
+                        "background": "#f9f9f9",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e2e2e2",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-primary-fixed-variant": "#474646",
+                        "surface": "#f9f9f9",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "inverse-surface": "#2f3131",
+                        "tertiary": "#000000",
+                        "tertiary-container": "#1b1c1c",
+                        "surface-container": "#eeeeee",
+                        "outline-variant": "#c4c7c7",
+                        "surface-container-high": "#e8e8e8",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f9f9f9",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "on-secondary-container": "#fffbff"
                     },
                     borderRadius: {
-                        "DEFAULT": "0.75rem",
-                        "lg": "1.25rem",
-                        "xl": "2rem",
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
                         "full": "9999px"
                     },
-                },
-            },
+                    spacing: {
+                        "unit": "4px",
+                        "max-width": "1280px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px"
+                    },
+                    fontFamily: {
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-sm": ["JetBrains Mono"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    fontSize: {
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "700" }],
+                        "label-md": ["14px", { lineHeight: "20px", fontWeight: "500" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }],
+                        "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }]
+                    }
+                }
+            }
         }
     </script>
     <style>
+        /* Google Fonts Import */
+        @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
         body {
-            font-family: 'Inter', sans-serif;
+            background-color: #0f0f0f;
+            /* Dark mode override as requested */
+            color: #ffffff;
+            font-family: 'Hanken Grotesk', sans-serif;
+            overflow-x: hidden;
         }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+
+        .industrial-grid {
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
+
+        .accent-text {
+            color: #bc13fe;
         }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+
+        .accent-bg {
+            background-color: #bc13fe;
+        }
+
+        .accent-border {
+            border-color: #bc13fe;
+        }
+
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark dark:text-slate-100 font-display transition-colors duration-300 text-black">
 
-<!-- ============== DESKTOP VERSION ============== -->
-<div class="hidden md:block">
+<body class="antialiased industrial-grid">
     <!-- TopNavBar -->
-    <header class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex h-20 items-center justify-between">
-                <div class="flex items-center gap-2">
-                    <div class="bg-primary p-2 rounded-lg text-white">
-                        <span class="material-symbols-outlined text-2xl">3d_rotation</span>
-                    </div>
-                    <span class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">ScalePrints</span>
-                </div>
-                <nav class="flex items-center gap-8">
-                    <a class="text-sm font-bold hover:text-primary transition-colors" href="#">Figuras</a>
-                    <a class="text-sm font-bold hover:text-primary transition-colors" href="#">Prototipos</a>
-                    <a class="text-sm font-bold hover:text-primary transition-colors" href="#">Materiales</a>
-                    <a class="text-sm font-bold hover:text-primary transition-colors" href="#">Precios</a>
-                </nav>
-                <div class="flex items-center gap-4">
-                    <button class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-full text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
-                        <span class="material-symbols-outlined text-lg">search</span>
-                        <span>Buscar</span>
-                    </button>
-                    <button class="bg-primary hover:bg-violet-700 text-white px-6 py-2.5 rounded-full text-sm font-black transition-all shadow-lg shadow-primary/20">
-                        ¡Cotizar ya!
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Hero Section -->
-        <section class="py-12 md:py-20">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="space-y-8">
-                    <div class="inline-flex items-center gap-2 bg-secondary/10 text-secondary px-4 py-1.5 rounded-full text-sm font-bold">
-                        <span class="material-symbols-outlined text-base">rocket_launch</span>
-                        <span>Impresión 3D de otro planeta</span>
-                    </div>
-                    <h1 class="text-5xl md:text-7xl font-black leading-[1.1] tracking-tight text-slate-900 dark:text-white">¡Tus ideas <span class="text-primary italic">cobran vida</span> aquí!</h1>
-                    <p class="text-lg md:text-xl dark:text-slate-400 max-w-lg text-slate-800">¿Un dragón para tu repisa o el prototipo de tu próximo invento? En ScalePrints le damos forma a todo usando resina (SLA) para el detalle y filamento (FDM) para la fuerza.</p>
-                    <div class="flex flex-wrap gap-4">
-                        <button class="bg-primary text-white px-8 py-4 rounded-xl text-lg font-black hover:scale-105 transition-transform flex items-center gap-2 shadow-[0_0_20px_rgba(157,0,255,0.4)]">
-                            <span>Ver Galería</span>
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </button>
-                        <button class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white px-8 py-4 rounded-xl text-lg font-black hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
-                            Escríbenos
-                        </button>
-                    </div>
-                    <div class="flex items-center gap-6 pt-4">
-                        <div class="flex -space-x-3">
-                            <div class="size-10 rounded-full border-2 border-background-dark bg-slate-400" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDFjOK1NeQo3DRg0Ms3TCE0hRpwknAsD6q4sJPEiILPfqof2HSWngaclsSLCPJVWORucY1INqH2heMZOMNsSpO2g9RlB5xSU-dURsjjt9EtpzuQm_4psyPPLRsokl0Whd05agwYPUptvOdVxxpy_E0RFC3K9cPmRpXjpQ__THCy7i_6rVOm65QgzUuQrkhhFAJ0CvhoO82mywjMzJH6ESKrcah3tP5VrwZjv5qqFFEuSeff_Eye3K0A_bKZTUcECa_RNTQ6me_OGUc')"></div>
-                            <div class="size-10 rounded-full border-2 border-background-dark bg-slate-500" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD0pEoqCsqKfawb6GEK7kB7zXWB4B3WkPgB50FcYJSF-tjVkitJDrPOePE-BmzOiLDVf1uqZXZyK2iHgh5cgTI5KePd6Rgb5j9K0oSxbkOwQMbWJo_GzCmhCVuDMcd0O-XAyQpd8mG567GT8MJ7IeGxZOWT35a2lAFWSITUJcgamR0iktN6Ato50FhqahJMrfhN7GrrLL6-iACB_rBCgS4thdjK1gFGRGOkvn1e-a6TRJkVpCKAlg438uh9ZZjMyt2EMVyDWz-FmME')"></div>
-                            <div class="size-10 rounded-full border-2 border-background-dark bg-slate-600" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAKlf9AIkyClLHBhvq1R0qdVfb_9N0ACYf-6WSsSsrE87ewxVeM_Lo76T4eMDv5hc3l6KWHiNapDiboIHkW1prWIjojCvlByf4hEjED__INvL2Pe6Ejtep9_0hOXePEFuj-p5Kv9R5ETIEvmYzTpYXaXicK47L3pnDENvAOTFzgHTBWXkaKd0yWXF96Am6Z9goRfqYz_oudA_vJJ69AgCeiXuLIdNkuJIV57jVQyhl8E3sX7oKi6mkEiIgmkM_zRs99HHxTy1L05yg')"></div>
-                        </div>
-                        <p class="text-sm font-medium"><span class="text-primary font-bold">+500</span> proyectos entregados este año</p>
-                    </div>
-                </div>
-                <div class="relative">
-                    <div class="absolute -top-10 -left-10 w-72 h-72 bg-accent/20 rounded-full blur-[100px]"></div>
-                    <div class="absolute -bottom-10 -right-10 w-72 h-72 bg-primary/30 rounded-full blur-[100px] shadow-[0_0_50px_theme(colors.primary)]"></div>
-                    <div class="relative bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 rounded-xl aspect-square flex items-center justify-center overflow-hidden border border-slate-200 dark:border-slate-700 shadow-2xl">
-                        <img alt="3D Printed Model" class="object-cover w-full h-full transform hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXMi20cBio0NoF3RZ1x2m8HL6fQvurpCUwIyy-yKUcVCjxdmT-ER-qrHHt0wVFWkphk5wVVa_JNZ9dOXjTPXCU3mAj5Af-rMKqDZMKv7WQjy6yFH4eaigwrWc1UxdXY2jxQbHzE_pOAU2mep90KKwhq5v5pxCxtOvh7q4VWIrenYTQiFq89OWJfVRDbtVXjW4PwybluCCz9pOReVLkiJrBmibODZTTHmEkH2so6yL4uZoRX478nmsqhZUkk1sBM6buL45EIhbCRtY"/>
-                        <div class="absolute bottom-6 right-6 bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20">
-                            <p class="text-xs font-bold uppercase tracking-widest text-primary mb-1">Material destacado</p>
-                            <p class="text-sm font-bold">Resina Tough-X Pro</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section class="py-16">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-black mb-4">¿Qué podemos imprimir por ti?</h2>
-                <p class="dark:text-slate-400 text-slate-800">Todo el poder de la fabricación digital en tus manos.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group p-8 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 hover:border-primary transition-all">
-                    <div class="size-14 bg-primary/20 text-primary rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-3xl">sports_esports</span>
-                    </div>
-                    <h3 class="text-xl font-black mb-3 text-primary">Figuras &amp; Arte</h3>
-                    <p class="dark:text-slate-400 leading-relaxed text-slate-800">
-                        Detalle quirúrgico con nuestra tecnología de resina. Perfecto para miniaturas de D&amp;D, estatuas de anime y arte digital.
-                    </p>
-                </div>
-                <div class="group p-8 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 hover:border-secondary transition-all">
-                    <div class="size-14 bg-secondary/20 text-secondary rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-3xl">precision_manufacturing</span>
-                    </div>
-                    <h3 class="text-xl font-black mb-3 text-secondary">Prototipos Rápidos</h3>
-                    <p class="dark:text-slate-400 leading-relaxed text-slate-800">
-                        Funcionalidad y resistencia. Usamos FDM con materiales industriales para que pruebes tus inventos en el mundo real.
-                    </p>
-                </div>
-                <div class="group p-8 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 hover:border-accent transition-all">
-                    <div class="size-14 bg-accent/20 text-accent rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-3xl">architecture</span>
-                    </div>
-                    <h3 class="text-xl font-black mb-3 text-accent">Maquetas a Escala</h3>
-                    <p class="dark:text-slate-400 leading-relaxed text-slate-800">
-                        Precisión milimétrica para arquitectos e ingenieros. Modelos topográficos y edificios con acabados premium.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Portfolio/Gallery Section -->
-        <section class="py-16">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-black mb-4">Echa un vistazo a lo que sale del horno</h2>
-                    <p class="dark:text-slate-400 text-slate-800">Proyectos frescos recién terminados para nuestros clientes.</p>
-                </div>
-                <div class="flex gap-2">
-                    <button class="p-2 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
-                        <span class="material-symbols-outlined">chevron_left</span>
-                    </button>
-                    <button class="p-2 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
-                        <span class="material-symbols-outlined">chevron_right</span>
-                    </button>
-                </div>
-            </div>
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="aspect-square rounded-lg overflow-hidden relative group cursor-pointer">
-                    <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQVvCkIAH6-PKGAI5r7k29UPCed9OfsMQ055RT6OYzun1CPicuYTHozvFgh3jc-DYmMaknX7AMG9r4Hyj-BPPfAvnbTuZp-DjRglSzOR5wevBpC119_0Mo3w4FmC6PAJW8AG3LooUbLXX5YmPVCcoXp05-c1xWd8l4-JmpMjSzIW7sM6dj0nX3uoYIlE8RshXaRAB5mBmBEOVym6X2J93MONfMU5gRriTJjI6dMVSt-vbA8m3-h6U9ggOxWzoo2Ok5i34q0GXD3ZA"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                        <p class="text-white text-sm font-bold">Proceso FDM</p>
-                    </div>
-                </div>
-                <div class="aspect-square rounded-lg overflow-hidden relative group cursor-pointer">
-                    <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfyrh8I9_zrWNJhFVcTHY7QqfE9PXnjAJT5232wHf0UY-yzMT75GzrZktFjpvRac9ynLci3mULTu7PshjiUp8AukM65Hju29p93t2wLAD-Q0yk6RIWqw9TZwUq2fK49XtltUOrYw5w3KcHyjifEMSDJvCPIdT5bBwJWqIZBOMMyFxIX0lS4wt7W5mu-CMr8D6XPqny5H_Q6cgms1grCt6HzBoyVW8T3GUIoK6wcFX-MUvnHF5ULRKZK-iUwO3bAu-VxbXkEN9qPrg"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                        <p class="text-white text-sm font-bold">Detalle en Resina</p>
-                    </div>
-                </div>
-                <div class="aspect-square rounded-lg overflow-hidden relative group cursor-pointer">
-                    <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkmENi4VssiUIcc_h-LHmBpQVIbOp286II-rKs3Y1F4KsdZwaHW0tRUgPwk2De6I2IjrOdwrTSkyedDIUp1a-_UiMCeAdoVdMT4s3Mshv6R821ojtcyuKs8UtqMJ0WFPGOT3cFBTHzE7SIEJT0Pu4G_7HkeGA393kyD9-k6lnB1sP3jPz1dgIDxoslH_2HUHeHCZRE_yOCCOHor7rV_tWgEFHntdXPEljmNL1CkkotKGQmLav0Niy6P3uPTIn6rehA9xs071H05CA"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                        <p class="text-white text-sm font-bold">Maqueta Industrial</p>
-                    </div>
-                </div>
-                <div class="aspect-square rounded-lg overflow-hidden relative group cursor-pointer">
-                    <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9N4Yx6g6v7dV7WibNyzjaZme52YlrnyNOb8MmrzZQTkH2tj_XNagdmIu0NBjitI51TMOjg_uyhYEeJyweRdSMgN_YAlHT4lCUfYXD0BWs-45uvSpgIOf5-CEnKRc9MvVfMOStkODW0Dji-5QBnGRHCmxjs1dr37xh4sZSH_ECEXPMd-VdpMmAxV2PovK8nd8SQk4VsYNoX9hnqFrQL0jEGdE4acElUmJZB_O90E7Llyw42vjDah_4qSxmPgNWK8f3KISlPeLBMCg"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                        <p class="text-white text-sm font-bold">Engranajes Funcionales</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Social Media Contact -->
-        <section class="py-16 mb-12">
-            <div class="bg-gradient-to-br from-primary via-accent to-secondary p-[2px] rounded-xl shadow-[0_0_30px_rgba(157,0,255,0.2)]">
-                <div class="bg-background-light dark:bg-background-dark rounded-xl p-8 md:p-12">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                        <div>
-                            <h2 class="text-4xl font-black mb-6">Síguenos la pista</h2>
-                            <p class="text-lg dark:text-slate-400 mb-8 max-w-md text-slate-800">
-                                Mostramos el proceso diario, fallos divertidos y resultados épicos. ¡Únete a nuestra comunidad!
-                            </p>
-                            <div class="flex flex-col gap-4">
-                                <a class="flex items-center gap-4 p-4 rounded-xl hover:bg-slate-50 transition-all border border-slate-200" href="#">
-                                    <div class="size-12 bg-green-500 rounded-lg flex items-center justify-center text-white">
-                                        <span class="material-symbols-outlined">chat</span>
-                                    </div>
-                                    <div>
-                                        <p class="font-black text-slate-950">WhatsApp</p>
-                                        <p class="text-xs text-slate-700">¡Escríbenos para cotizar!</p>
-                                    </div>
-                                    <span class="material-symbols-outlined ml-auto text-slate-950">open_in_new</span>
-                                </a>
-                                <a class="flex items-center gap-4 p-4 rounded-xl hover:bg-slate-50 transition-all border border-slate-200" href="#">
-                                    <div class="size-12 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 rounded-lg flex items-center justify-center text-white">
-                                        <span class="material-symbols-outlined">camera_alt</span>
-                                    </div>
-                                    <div>
-                                        <p class="font-black text-slate-950">@ScalePrints3D</p>
-                                        <p class="text-xs text-slate-700">Instagram • 15.4k seguidores</p>
-                                    </div>
-                                    <span class="material-symbols-outlined ml-auto text-slate-950">open_in_new</span>
-                                </a>
-                                <a class="flex items-center gap-4 p-4 rounded-xl hover:bg-slate-50 transition-all border border-slate-200" href="#">
-                                    <div class="size-12 bg-black rounded-lg flex items-center justify-center text-white">
-                                        <span class="material-symbols-outlined">video_library</span>
-                                    </div>
-                                    <div>
-                                        <p class="font-black text-slate-950">@ScalePrints_TikTok</p>
-                                        <p class="text-xs text-slate-700">TikTok • El proceso en video</p>
-                                    </div>
-                                    <span class="material-symbols-outlined ml-auto text-slate-950">open_in_new</span>
-                                </a>
-                                <a class="flex items-center gap-4 p-4 rounded-xl hover:bg-slate-50 transition-all border border-slate-200" href="#">
-                                    <div class="size-12 bg-red-600 rounded-lg flex items-center justify-center text-white">
-                                        <span class="material-symbols-outlined">play_circle</span>
-                                    </div>
-                                    <div>
-                                        <p class="font-black text-slate-950">ScalePrints TV</p>
-                                        <p class="text-xs text-slate-700">YouTube • Reviews y Tutoriales</p>
-                                    </div>
-                                    <span class="material-symbols-outlined ml-auto text-slate-950">open_in_new</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="aspect-[3/4] rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-800 relative">
-                                <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-jjVt0jrQrCLxrDZZvMyxRqS-lE2PujMAWwf6BTHCFNh4-Z8Q-gc_la7DsAmmg0zPvO-L81IuU-ujvJumpf6Qs4OS7-vKCe5ctGeJLle70FOpY7U-727wAOG48j86y9QgKA_s4h5iRGL5Jivx2GK9zFYxMXQ8k4x6kDvAxHuBWAPacK0GciXuK4f-GeGsuciacOMyXcVc7Qw-qCshPQVJ93FjYidMi_Q7yHHIQkdL9S_0AN8GZmK0h6uiRNcizlSYTpVDi3Y8GS0"/>
-                            </div>
-                            <div class="aspect-[3/4] rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-800 translate-y-8">
-                                <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKiNPnnlE02YIaqcH2U_6P7Ur773YlaV45DIdlhLuiSLKYiNmhzXhdKHJiiPtxIvsJ9wPdbmor07dWwA-IMT-wZXOGfwHKJ8O4GBa5Sx1sn6NepHHfh7pjmxvzejVs2yu5yvRBGhE7plSwCOzC29sGrb5DT0ev4pQuzvR1ZwuypngGPBfkCUtcqHJX9SK5wpoOTJ48s8_Sn5OG5MQIV5Y4pgGOkD7J9ZS6IxnP9w6ZPB8TQnH_40ap3M2gFYAcCa4xOA0vv2lsfNQ"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-100 dark:bg-slate-900 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8 border-b border-slate-200 dark:border-slate-800 pb-12">
-                <div class="flex items-center gap-2">
-                    <div class="bg-primary p-1.5 rounded-lg text-white">
-                        <span class="material-symbols-outlined text-xl">3d_rotation</span>
-                    </div>
-                    <span class="text-xl font-black tracking-tight">ScalePrints</span>
-                </div>
-                <div class="flex flex-wrap justify-center gap-8">
-                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Términos</a>
-                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Privacidad</a>
-                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">FAQs</a>
-                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Envíos</a>
-                </div>
-            </div>
-            <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 font-medium">
-                <p>© 2024 ScalePrints. Hecho con amor y plástico biodegradable.</p>
-                <p>Lima, Perú 🇵🇪</p>
-            </div>
-        </div>
-    </footer>
-</div>
-
-<!-- ============== MOBILE VERSION ============== -->
-<div class="md:hidden flex flex-col min-h-screen">
-    <!-- TopAppBar -->
-    <header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
-        <div class="flex items-center justify-between p-4 max-w-md mx-auto w-full">
-            <div class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-primary text-2xl">menu</span>
-                <h2 class="text-xl font-black tracking-tight text-slate-900 dark:text-white">ScalePrints</h2>
-            </div>
-            <button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-full text-sm font-bold transition-all shadow-sm">
-                ¡Cotizar ya!
+    <header
+        class="w-full top-0 sticky z-50 bg-[#0f0f0f]/90 backdrop-blur-md border-b border-outline-variant dark:border-outline">
+        <div
+            class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-max-width mx-auto">
+            <a class="font-headline-md text-headline-md font-bold text-white tracking-tighter flex items-center gap-2"
+                href="#">
+                <img src="assets/creaciones.png" alt="Inversiones Jojo Logo" class="h-10 w-auto object-contain rounded-lg" />
+                Inversiones Jojo
+            </a>
+            <nav class="hidden md:flex gap-8 font-label-md text-label-md">
+                <a class="text-on-surface-variant hover:text-[#bc13fe] transition-colors duration-200"
+                    href="#services">Servicios</a>
+                <a class="text-[#bc13fe] border-b-2 border-[#bc13fe] pb-1" href="#portfolio">Galería</a>
+                <a class="text-on-surface-variant hover:text-[#bc13fe] transition-colors duration-200"
+                    href="#contacto">Contacto</a>
+            </nav>
+            <button
+                class="bg-[#bc13fe] text-white px-6 py-2 rounded-none font-label-md text-label-md uppercase tracking-wider hover:bg-[#7a00c2] transition-colors duration-200 border border-[#bc13fe]">
+                Cotizar Ya
             </button>
         </div>
     </header>
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden border-b border-white/10">
+        <!-- STITCH_THREEJS_START:ANIMATION_9 class="absolute inset-0 w-full h-full opacity-50" -->
+        <div class="absolute inset-0 w-full h-full opacity-50" style="display:block;">
+            <script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+            <div id="threejs-container-ANIMATION_9" style="width:100%;height:100%"></div>
+            <script>
+                    (function () {
+                        const container = document.getElementById('threejs-container-ANIMATION_9');
+                        const devicePixelRatio = window.devicePixelRatio || 1;
+                        const width = container.clientWidth || window.innerWidth;
+                        const height = container.clientHeight || window.innerHeight;
 
-    <main class="max-w-md mx-auto w-full flex-1">
-        <!-- Hero Section -->
-        <section class="px-4 py-8">
-            <div class="relative w-full aspect-square rounded-xl overflow-hidden mb-6 shadow-xl">
-                <img alt="3D Printed Model" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5j_gRWcxpjdLTv2bqoDbO2X-fO3yHZwKuP6EFhGxyT_AcizjoOqLFc2MCWzgMjeniK1CZenEPQMo3agsXIkXeJ7HLPlhlPxIOPt-_brJGxV9SVMGki6cwU-aLFfpEk3nF_B4GDtq974zWFJ-1W6Itx1asa9q1hoCoBNxQZIXZ0Hr6r9q2ry1owKL8QEPKmVABY0q8eQlZt94O6rWXlrQlG-HeMhF9jDhpo6odVuxPRfeO2wrLRE1Slxy6e-zRi04zM5y16NNfXmA"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                    <div class="flex gap-2">
-                        <span class="bg-primary/20 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold px-2 py-1 rounded">FDM FILAMENTO</span>
-                        <span class="bg-white/20 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold px-2 py-1 rounded">SLA RESINA</span>
-                    </div>
-                </div>
-            </div>
-            <div class="space-y-4">
-                <h1 class="text-4xl font-black leading-tight tracking-tight text-slate-900 dark:text-white">
-                    ¡Tus ideas cobran vida aquí!
-                </h1>
-                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
-                    Impresión 3D profesional para estudiantes y profesionales. Calidad excepcional en Lima, Perú.
-                </p>
-                <button class="w-full bg-primary text-white h-14 rounded-xl font-bold text-lg shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
-                    Ver Catálogo
-                    <span class="material-symbols-outlined">arrow_forward</span>
-                </button>
-            </div>
-        </section>
+                        const scene = new THREE.Scene();
+                        const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+                        camera.position.z = 5;
 
-        <!-- Services Section -->
-        <section class="px-4 py-10 bg-slate-50 dark:bg-slate-900/50">
-            <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Nuestros Servicios</h2>
-            <div class="flex flex-col gap-4">
-                <!-- Service Card 1 -->
-                <div class="group relative overflow-hidden rounded-xl aspect-[16/9] bg-slate-200">
-                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCn3OvIoU_40AdvFi3G765Fi8oW8_obUqrdJwPulW6UtsN6TmJc4I1-rZMmhZi8ruUFoif4kM59lPfap0XYS_934LmCqOiTSTsQVeke0HaezdLVFNMkoPPJlB0dD7YhKQ1nEmJKaZfcdd-Us4_Zm2WFCwebRgMrOJclpZ2vt65nCSUcrKC5AMM5Wy6mCS42KvctcOdHgQwNfKiKkMRaaCIdKrMxx5gP7hLYkkrOU1WkjC00GK9K4MfbyuLym-yyhq61p3OwZS4yvzU')"></div>
-                    <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex flex-col justify-center p-6">
-                        <h3 class="text-white text-xl font-bold">Figuras &amp; Arte</h3>
-                        <p class="text-white/80 text-sm mt-1">Acabados de alta precisión para coleccionables.</p>
-                    </div>
-                </div>
-                <!-- Service Card 2 -->
-                <div class="group relative overflow-hidden rounded-xl aspect-[16/9] bg-slate-200">
-                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuByb9gCa7uaSOxn8ohoGObEQwBpr77KXxTfVg4uS9-IuNtphAdirCQrGsx4m-8Znk6eFeEhrQBiULs_Rp13JLYyY_7joWh7o_zss16GXoqVQ8vEgOjOCDpNrT587ajOk-U0LkBtGAyToD6HlKsGznQu9npWTzyuWNbX-dD2z1tnsl3-zW8T26Ise7SGpZsIGfsKQlfyBbahbmljg9PGLlyRezAb8f3B6YYWiD4EIpvGLJeekoUz76yqvPLN0mO6OtMbMEVjpplsMGM')"></div>
-                    <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex flex-col justify-center p-6">
-                        <h3 class="text-white text-xl font-bold">Prototipos Rápidos</h3>
-                        <p class="text-white/80 text-sm mt-1">Iteraciones rápidas para proyectos de ingeniería.</p>
-                    </div>
-                </div>
-                <!-- Service Card 3 -->
-                <div class="group relative overflow-hidden rounded-xl aspect-[16/9] bg-slate-200">
-                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWKnl9z_xBImOGhZgeRIM_rFfwVsW7DCdLohqkcKgMEkKtl-qH9-RDa2hLTKL0m-g6crAYHc6spzUuW7AAhiohMh_PEUfJs7_bG7FPc2v1fLgL4OLfXmUJ3QGssyh4FGiZdxwmCcELYzPjG7cFt8d8wE6kTAkP6wzjvaxwuYbhXMlHi9GV10c1Y0l7R6GZpxFewD9Qo5gKhLFtOguQth0A3sTj35d0Lw0ZLnjCNDxitWfPP3Ylyd2Ptsvivvz3puUV-xiQHwC3bHc')"></div>
-                    <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex flex-col justify-center p-6">
-                        <h3 class="text-white text-xl font-bold">Maquetas a Escala</h3>
-                        <p class="text-white/80 text-sm mt-1">Precisión arquitectónica y urbanística.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                        renderer.setSize(width, height);
+                        renderer.setPixelRatio(window.devicePixelRatio);
+                        container.appendChild(renderer.domElement);
 
-        <!-- Gallery Section -->
-        <section class="py-10">
-            <div class="px-4 flex justify-between items-end mb-6">
-                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Galería de Impresiones</h2>
-                <span class="text-primary text-sm font-semibold">Ver todas</span>
-            </div>
-            <div class="flex overflow-x-auto gap-4 px-4 no-scrollbar">
-                <!-- Gallery Item 1 -->
-                <div class="min-w-[200px] aspect-square rounded-xl bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0 shadow-md">
-                    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpiSLoc_ZbAQDNTLVQrXpCLli-NYbKKYqX5H0puIwFCjr9GgQSvtc8ibaqtklmQXgSO9rp4He8wr8VgCIO0ATurnFlGXmXQ_uuOMIwfJiPNNS4D0aJ4B-yzsu5kuW_a_0XgMrlHgwp1QmORgIMp1hREU06Ttu8w-5hAzLEXmJHHd7EBxsrjb3PW-4rOYWA8I3JNRPuuIjip4YBjkvBcNPyrsI_kKu1OObEvaHkshjoUz-yjWN6ykSNPzCkB_lvHHp43EJAg9N0u8Y"/>
-                </div>
-                <!-- Gallery Item 2 -->
-                <div class="min-w-[200px] aspect-square rounded-xl bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0 shadow-md">
-                    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO4a-Ei8TPbn9Yws5np3-m7WGBOEAjehIszMgNgHNRfo9zH19IBb_OfVclPx5Rbn9tnfOiiWzMowDKS5RTeigok-05btKqIC850WzPDI14q4Z8JVof7uB_UJWc3a5-ypz_kaPM8qbMn8nHR1uwI0xu24M12CScCOmzCIYnIiLyqQAxB1WjRZuy4s3u7iGMli2iVu-b-j2cUsPV1wLCL7IA7pyemIXVoTcny2LXmjME0eRo-yl1qHhaI6N0t7xq6zR-QYZOgqU6lBg"/>
-                </div>
-                <!-- Gallery Item 3 -->
-                <div class="min-w-[200px] aspect-square rounded-xl bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0 shadow-md">
-                    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMeLAYKreXttCt5RMfup65iTcRXirK2PoSG22LucEmiesg1rZQS8CgIUQ_PIEUQ2Hwkq19GuZIoJn-4HtcVumCDWMqTmSCt7nJ2jGfJbyolbzBOpJW136lAAfYLXHjPAMfLQNA0Wh6U4x4zMmhFIcgAu-eeZteLrG8qJHSvDpiu5LngE4WCeIZVG0bi0zQgEP8MEd8PphWnD_dTxW-w_NGfDl9VJtCmii-l_pNafXJpFMpRnU4PY_Z73kpc2SQK-FvlHuUOhJzh50"/>
-                </div>
-                <!-- Gallery Item 4 -->
-                <div class="min-w-[200px] aspect-square rounded-xl bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0 shadow-md">
-                    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5j_gRWcxpjdLTv2bqoDbO2X-fO3yHZwKuP6EFhGxyT_AcizjoOqLFc2MCWzgMjeniK1CZenEPQMo3agsXIkXeJ7HLPlhlPxIOPt-_brJGxV9SVMGki6cwU-aLFfpEk3nF_B4GDtq974zWFJ-1W6Itx1asa9q1hoCoBNxQZIXZ0Hr6r9q2ry1owKL8QEPKmVABY0q8eQlZt94O6rWXlrQlG-HeMhF9jDhpo6odVuxPRfeO2wrLRE1Slxy6e-zRi04zM5y16NNfXmA"/>
-                </div>
-            </div>
-        </section>
+                        // Abstract 3D Printer / Technical Object
+                        const group = new THREE.Group();
 
-        <!-- Social Section -->
-        <section class="px-4 py-10 border-t border-slate-100 dark:border-slate-800">
-            <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Síguenos la pista</h2>
-            <div class="grid grid-cols-1 gap-3">
-                <a class="flex items-center gap-4 p-4 rounded-xl bg-green-500/10 text-green-600 font-bold border border-green-500/20" href="#">
-                    <span class="material-symbols-outlined">chat</span>
-                    WhatsApp
-                    <span class="ml-auto material-symbols-outlined">chevron_right</span>
-                </a>
-                <a class="flex items-center gap-4 p-4 rounded-xl bg-pink-500/10 text-pink-600 font-bold border border-pink-500/20" href="#">
-                    <span class="material-symbols-outlined">camera</span>
-                    Instagram
-                    <span class="ml-auto material-symbols-outlined">chevron_right</span>
-                </a>
-                <a class="flex items-center gap-4 p-4 rounded-xl bg-slate-900/10 dark:bg-white/10 text-slate-900 dark:text-white font-bold border border-slate-900/20 dark:border-white/20" href="#">
-                    <span class="material-symbols-outlined">music_note</span>
-                    TikTok
-                    <span class="ml-auto material-symbols-outlined">chevron_right</span>
-                </a>
-                <a class="flex items-center gap-4 p-4 rounded-xl bg-red-500/10 text-red-600 font-bold border border-red-500/20" href="#">
-                    <span class="material-symbols-outlined">play_circle</span>
-                    YouTube
-                    <span class="ml-auto material-symbols-outlined">chevron_right</span>
-                </a>
-            </div>
-        </section>
-    </main>
+                        // Main Frame
+                        const frameGeom = new THREE.BoxGeometry(3, 3, 0.2);
+                        const wireMaterial = new THREE.MeshPhongMaterial({
+                            color: 0xbc13fe,
+                            wireframe: true,
+                            transparent: true,
+                            opacity: 0.5
+                        });
+                        const frame = new THREE.Mesh(frameGeom, wireMaterial);
+                        group.add(frame);
 
-    <!-- Footer -->
-    <footer class="px-6 py-10 bg-slate-900 text-white rounded-t-3xl mt-auto">
-        <div class="flex flex-col items-center text-center gap-6">
-            <div class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-primary">layers</span>
-                <span class="text-2xl font-black">ScalePrints</span>
-            </div>
-            <div class="flex flex-col gap-2 text-slate-400 text-sm">
-                <p class="flex items-center justify-center gap-1">
-                    <span class="material-symbols-outlined text-xs">location_on</span>
-                    Lima, Perú
-                </p>
-                <div class="flex gap-4 mt-2 font-medium">
-                    <a class="hover:text-primary transition-colors" href="#">Términos</a>
-                    <span class="text-slate-700">|</span>
-                    <a class="hover:text-primary transition-colors" href="#">Privacidad</a>
+                        // Inner "Printed" Structure
+                        const innerGeom = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
+                        const innerMaterial = new THREE.MeshPhongMaterial({
+                            color: 0xffffff,
+                            emissive: 0x333333,
+                            shininess: 100
+                        });
+                        const inner = new THREE.Mesh(innerGeom, innerMaterial);
+                        group.add(inner);
+
+                        // Vertical Pillars
+                        const pillarGeom = new THREE.CylinderGeometry(0.05, 0.05, 4, 12);
+                        const pillarMat = new THREE.MeshPhongMaterial({ color: 0x666666 });
+                        for (let i = -1; i <= 1; i += 2) {
+                            for (let j = -1; j <= 1; j += 2) {
+                                const pillar = new THREE.Mesh(pillarGeom, pillarMat);
+                                pillar.position.set(i * 1.6, 0, j * 0.2);
+                                group.add(pillar);
+                            }
+                        }
+
+                        scene.add(group);
+
+                        const light = new THREE.DirectionalLight(0xffffff, 1);
+                        light.position.set(5, 5, 5);
+                        scene.add(light);
+                        scene.add(new THREE.AmbientLight(0x404040));
+
+                        function animate() {
+                            requestAnimationFrame(animate);
+                            group.rotation.y += 0.005;
+                            inner.rotation.x += 0.01;
+                            renderer.render(scene, camera);
+                        }
+
+                        window.addEventListener('resize', () => {
+                            const w = container.clientWidth || window.innerWidth;
+                            const h = container.clientHeight || window.innerHeight;
+                            camera.aspect = w / h;
+                            camera.updateProjectionMatrix();
+                            renderer.setSize(w, h);
+                        });
+
+                        animate();
+                    })();
+            </script>
+        </div>
+        <!-- STITCH_THREEJS_END:ANIMATION_9 -->
+        <div class="relative z-10 text-center px-margin-mobile max-w-4xl mx-auto flex flex-col items-center">
+            <div class="w-64 h-64 mb-8">
+                <!-- STITCH_SHADER_START:ANIMATION_10 class="w-full h-full" -->
+                <div class="w-full h-full" style="display:block;">
+                    <!-- <canvas id="shader-canvas-ANIMATION_10" style="display:block;width:100%;height:100%"></canvas> -->
+                    <script>
+                        (function () {
+                            const canvas = document.getElementById('shader-canvas-ANIMATION_10');
+
+                            // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+                            // This fires on initial layout and whenever the element is resized.
+                            function syncSize() {
+                                const w = canvas.clientWidth || 1280;
+                                const h = canvas.clientHeight || 720;
+                                if (canvas.width !== w || canvas.height !== h) {
+                                    canvas.width = w;
+                                    canvas.height = h;
+                                }
+                            }
+                            if (typeof ResizeObserver !== 'undefined') {
+                                new ResizeObserver(syncSize).observe(canvas);
+                            }
+                            syncSize();
+
+                            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                            if (!gl) return;
+                            const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+                            const fs = `precision highp float;
+varying vec2 v_texCoord;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+float grid(vec2 uv, float res) {
+    vec2 grid = fract(uv * res);
+    return smoothstep(0.48, 0.5, max(grid.x, grid.y));
+}
+
+void main() {
+    vec2 uv = (gl_FragCoord.xy * 2.0 - u_resolution.xy) / min(u_resolution.x, u_resolution.y);
+    
+    // Background base
+    vec3 color = vec3(0.04, 0.04, 0.04);
+    
+    // Technical Grid
+    float g1 = grid(uv + u_time * 0.02, 10.0);
+    color += g1 * 0.03;
+    
+    // Animated "laser" scan lines
+    float scan = smoothstep(0.1, 0.0, abs(sin(uv.y * 2.0 + u_time) - uv.x * 0.2));
+    color += scan * vec3(0.7, 0.1, 1.0) * 0.05;
+    
+    // Vignette
+    color *= 1.0 - length(uv) * 0.4;
+    
+    gl_FragColor = vec4(color, 1.0);
+}`;
+                            function cs(type, src) {
+                                const s = gl.createShader(type);
+                                gl.shaderSource(s, src);
+                                gl.compileShader(s);
+                                return s;
+                            }
+                            const prog = gl.createProgram();
+                            gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+                            gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+                            gl.linkProgram(prog);
+                            gl.useProgram(prog);
+                            const buf = gl.createBuffer();
+                            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+                            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+                            const pos = gl.getAttribLocation(prog, 'a_position');
+                            gl.enableVertexAttribArray(pos);
+                            gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+                            const uTime = gl.getUniformLocation(prog, 'u_time');
+                            const uRes = gl.getUniformLocation(prog, 'u_resolution');
+                            const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+                            // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+                            // Shaders that need normalized coords should use: u_mouse / u_resolution.
+                            let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+                            window.addEventListener('mousemove', (event) => {
+                                const rect = canvas.getBoundingClientRect();
+                                if (rect.width && rect.height) {
+                                    const nx = (event.clientX - rect.left) / rect.width;
+                                    const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+                                    mouse.x = nx * canvas.width;
+                                    mouse.y = ny * canvas.height;
+                                }
+                            });
+
+                            function render(t) {
+                                if (typeof ResizeObserver === 'undefined') syncSize();
+                                gl.viewport(0, 0, canvas.width, canvas.height);
+                                if (uTime) gl.uniform1f(uTime, t * 0.001);
+                                if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+                                if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+                                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                                requestAnimationFrame(render);
+                            }
+                            render(0);
+                        })();
+                    </script>
                 </div>
+                <!-- STITCH_SHADER_END:ANIMATION_10 -->
             </div>
-            <div class="pt-6 border-t border-slate-800 w-full text-slate-500 text-[10px] uppercase tracking-widest font-bold">
-                © 2024 ScalePrints - Todos los derechos reservados
+            <h1 class="font-display-lg text-display-lg text-white mb-6 tracking-tight fade-in-up">
+                De la Idea a la <span class="accent-text">Realidad</span>
+            </h1>
+            <p class="font-body-lg text-body-lg text-gray-400 mb-10 max-w-2xl mx-auto fade-in-up"
+                style="transition-delay: 0.1s;">
+                Impresión 3D y Corte Láser de alta precisión para proyectos industriales y creativos.
+            </p>
+            <a class="inline-block border-2 accent-border text-white px-8 py-4 font-label-md text-label-md uppercase tracking-widest hover:bg-[#bc13fe] transition-colors duration-300 fade-in-up"
+                href="#portfolio" style="transition-delay: 0.2s;">
+                Ver Portafolio
+            </a>
+        </div>
+    </section>
+    <!-- Services Grid -->
+    <section class="py-24 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto" id="services">
+        <div class="mb-16 fade-in-up">
+            <span class="font-label-sm text-label-sm text-gray-500 uppercase tracking-widest mb-2 block">01 /
+                Capacidades</span>
+            <h2 class="font-headline-lg text-headline-lg text-white">Servicios Técnicos</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Service Card 1 -->
+            <div
+                class="border border-white/10 p-8 hover:border-[#bc13fe]/50 transition-colors bg-white/5 backdrop-blur-sm group fade-in-up">
+                <div
+                    class="w-12 h-12 mb-6 border border-white/20 flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-white">
+                    <span class="material-symbols-outlined" data-icon="category">category</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md text-white mb-3">Figuras &amp; Arte</h3>
+                <p class="font-body-md text-body-md text-gray-400 font-label-md">Piezas de colección y decorativas de
+                    alta fidelidad.</p>
+            </div>
+            <!-- Service Card 2 -->
+            <div class="border border-white/10 p-8 hover:border-[#bc13fe]/50 transition-colors bg-white/5 backdrop-blur-sm group fade-in-up"
+                style="transition-delay: 0.1s;">
+                <div
+                    class="w-12 h-12 mb-6 border border-white/20 flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-white">
+                    <span class="material-symbols-outlined" data-icon="speed">speed</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md text-white mb-3">Prototipos Rápidos</h3>
+                <p class="font-body-md text-body-md text-gray-400 font-label-md">Validación funcional en 24h para
+                    ingenierías.</p>
+            </div>
+            <!-- Service Card 3 -->
+            <div class="border border-white/10 p-8 hover:border-[#bc13fe]/50 transition-colors bg-white/5 backdrop-blur-sm group fade-in-up"
+                style="transition-delay: 0.2s;">
+                <div
+                    class="w-12 h-12 mb-6 border border-white/20 flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-white">
+                    <span class="material-symbols-outlined" data-icon="foundation">foundation</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md text-white mb-3">Maquetas a Escala</h3>
+                <p class="font-body-md text-body-md text-gray-400 font-label-md">Arquitectura y detalle milimétrico
+                    estructural.</p>
+            </div>
+            <!-- Service Card 4 -->
+            <div class="border border-white/10 p-8 hover:border-[#bc13fe]/50 transition-colors bg-white/5 backdrop-blur-sm group fade-in-up"
+                style="transition-delay: 0.3s;">
+                <div
+                    class="w-12 h-12 mb-6 border border-white/20 flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-white">
+                    <span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md text-white mb-3">Asesorías 3D</h3>
+                <p class="font-body-md text-body-md text-gray-400 font-label-md">Optimización de diseños para
+                    fabricación eficiente.</p>
             </div>
         </div>
+    </section>
+    <!-- Gallery Portfolio -->
+    <section class="py-24 border-t border-white/10 bg-black/50" id="portfolio">
+        <div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop">
+            <div class="mb-16 flex justify-between items-end fade-in-up">
+                <div>
+                    <span class="font-label-sm text-label-sm text-gray-500 uppercase tracking-widest mb-2 block">02 /
+                        Resultados</span>
+                    <h2 class="font-headline-lg text-headline-lg text-white">Calidad Industrial</h2>
+                </div>
+                <a class="font-label-md text-label-md text-[#bc13fe] hover:text-white transition-colors flex items-center gap-2"
+                    href="#">
+                    Ver Todo <span class="material-symbols-outlined text-sm"
+                        data-icon="arrow_forward">arrow_forward</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Portfolio Item 1 -->
+                <div class="relative group overflow-hidden border border-white/10 fade-in-up">
+                    <div class="aspect-[4/5] bg-gray-900 w-full relative">
+                        <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                            data-alt="A high-contrast macro photograph of a 3D printed industrial gear prototype, showcasing perfect layer lines and precision engineering. Dark industrial setting with dramatic top-down studio lighting casting sharp shadows. The material appears to be a sleek dark grey resin with high detail accuracy. Minimalist, technical aesthetic emphasizing manufacturing quality."
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvj5kicdUhXMRBFGPwWe2Hrzx3pUUTTSYvMTeJRkt-ku-lWKkMa6LV54zboJVhn3CAkQCDFkwa-4zb9ILV9vKusBti_RA3qcULdNKMUortfELcZKrJnf_LaPO7U6sT2jzliK7C4rehpdYKe0GyB7XiTbWgbnPFQSUNZ9vSiwtPvFdcWqck4tDBrgNwjERPgNjz88_4d6Zk_JQpkg48CTxKypieeMebnn_qQdwhdh0YC3ejJ1ytwwS-mali02ybs2H82dopDCoyumeD" />
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/80 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <span
+                            class="inline-block px-2 py-1 bg-black/80 border border-[#d9480f] text-[#d9480f] font-label-sm text-[10px] uppercase mb-2">Resina
+                            SLA</span>
+                        <h4 class="font-headline-md text-headline-md text-white">Mecanismo de Engranaje</h4>
+                    </div>
+                </div>
+                <!-- Portfolio Item 2 -->
+                <div class="relative group overflow-hidden border border-white/10 fade-in-up"
+                    style="transition-delay: 0.1s;">
+                    <div class="aspect-[4/5] bg-gray-900 w-full relative">
+                        <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                            data-alt="An architectural scale model of a modern minimalist building, created using precise laser cutting and 3D printing techniques. Placed on a matte black cutting mat with grid lines. Sharp, cold white lighting highlights the precise geometric angles and structural integrity of the white PLA material. Highly technical, clean, and professional architectural presentation."
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUB7xLQ83SdsB0hZuSk7jeZHKfFy24pCli0cch34IHld3X7rNyml9kd6cdB67e_pKH9s4lBaKdT6Z--dTaylFKIsu08dMXdf_F4lbcGT3klaFw4mUdvYe1oZcbZFTJmReveOuq3EPmNDyGnlfi1yumcB9CtYGP6m01BjLbqSTcmNJmsdxBVEkR3ISov_TwJbWCqWStKZxj6m1lMXKzattrR52ndjrAWzL4NQ6tOd3K6sA3_EgoR-HpqbqHkvMlWE4b1SqqjU4fZ_Gc" />
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/80 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <span
+                            class="inline-block px-2 py-1 bg-black/80 border border-[#bc13fe] text-[#bc13fe] font-label-sm text-[10px] uppercase mb-2">FDM
+                            / Láser</span>
+                        <h4 class="font-headline-md text-headline-md text-white">Maqueta Arquitectónica</h4>
+                    </div>
+                </div>
+                <!-- Portfolio Item 3 -->
+                <div class="relative group overflow-hidden border border-white/10 fade-in-up"
+                    style="transition-delay: 0.2s;">
+                    <div class="aspect-[4/5] bg-gray-900 w-full relative">
+                        <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                            data-alt="A highly detailed conceptual art figure, 3D printed with ultra-high resolution resin. The figure has a futuristic, slightly cybernetic design. Photographed against a pure black background with dramatic rim lighting highlighting the flawless surface finish and intricate details. The aesthetic is premium, dark, and highly focused on the quality of the fabrication."
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5tVDHdlQeajYWGy9VOWvbBD-tuisM-ip3S8ZGnbeJBMbwoZEWt6HtXOHni5KEMQGvD1qLY3oXNr8PEpTBDwY3W1LaC814LvFD3a1D_jT7t73uXH1Q56YdiNpe8QrRdgT34ohAM3YJ7MlrDtTE1NSa8hGRM7dJY1F6-wTW9CILemB_MF3fJP29cZ23k5IQsO0OpJtMT7kThVEeIGSryJF0Smi16zEmqb6V1v8x_JJsPjt3TzpQq9Mw8ClNC30CY0DAEmyuaSAreiFN" />
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/80 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <span
+                            class="inline-block px-2 py-1 bg-black/80 border border-[#bc13fe] text-[#bc13fe] font-label-sm text-[10px] uppercase mb-2">Resina
+                            Alta Res.</span>
+                        <h4 class="font-headline-md text-headline-md text-white">Figura de Concepto</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer / Contact -->
+    <footer class="bg-black border-t border-[#bc13fe]/30 mt-auto">
+        <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-gutter px-margin-mobile md:px-margin-desktop py-16 max-w-max-width mx-auto">
+            <div class="fade-in-up">
+                <a class="font-headline-md text-headline-md text-white mb-6 flex items-center gap-2" href="#">
+                    <img src="assets/creaciones.png" alt="Inversiones Jojo Logo" class="h-8 w-auto object-contain rounded-lg" />
+                    Inversiones Jojo
+                </a>
+                <p class="font-label-md text-gray-400 mb-8 max-w-sm leading-relaxed">
+                    Precisión industrial y creatividad sin límites. Especialistas en materializar proyectos complejos
+                    con tecnología de vanguardia.
+                </p>
+                <div class="flex gap-4">
+                    <a class="w-10 h-10 border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-all"
+                        href="https://wa.me/51902805278" target="_blank" title="WhatsApp">
+                        <span class="font-label-sm">WA</span>
+                    </a>
+                    <a class="w-10 h-10 border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-all"
+                        href="https://www.instagram.com/creacionesjojo/" target="_blank" title="Instagram">
+                        <span class="font-label-sm">IG</span>
+                    </a>
+                    <a class="w-10 h-10 border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-all"
+                        href="https://www.tiktok.com/@creacionesjojo.peru" target="_blank" title="TikTok">
+                        <span class="font-label-sm">TK</span>
+                    </a>
+                    <a class="w-10 h-10 border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-all"
+                        href="https://www.youtube.com/@creacionesjojoperu" target="_blank" title="YouTube">
+                        <span class="font-label-sm">YT</span>
+                    </a>
+                    <a class="w-10 h-10 border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-all"
+                        href="https://cults3d.com/@creacionesjojoperu" target="_blank" title="Cults3D">
+                        <span class="font-label-sm">C3D</span>
+                    </a>
+                </div>
+            </div>
+            <div class="fade-in-up" style="transition-delay: 0.1s;">
+                <h4 class="font-label-md text-white uppercase tracking-widest mb-6 border-b border-white/10 pb-4">
+                    Contacto</h4>
+                <ul class="space-y-4 font-label-md text-gray-400">
+                    <li class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-[#d9480f] mt-1"
+                            data-icon="location_on">location_on</span>
+                        <span>Jirón Libertad 1545,<br />Pueblo Libre, Lima, Perú</span>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-[#bc13fe]" data-icon="phone">phone</span>
+                        <span>+51 902 805 278</span>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-[#bc13fe]" data-icon="mail">mail</span>
+                        <span>ventas@inversionesjojo.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-white/10 px-margin-mobile md:px-margin-desktop py-6 text-center">
+            <p class="font-label-sm text-label-sm text-gray-600">
+                © 2024 Inversiones Jojo. Todos los derechos reservados.
+            </p>
+        </div>
     </footer>
-
-    <!-- WhatsApp Floating Button -->
-    <a aria-label="Chat on WhatsApp" class="fixed bottom-6 right-6 z-[100] bg-primary text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300" href="#">
-        <span class="material-symbols-outlined text-3xl">chat</span>
+    <!-- SideNavBar (Floating WhatsApp) -->
+    <a class="fixed bottom-8 right-8 rounded-full h-14 w-14 shadow-lg bg-[#bc13fe] text-white flex items-center justify-center cursor-pointer hover:scale-110 transition-transform z-50 group"
+        href="https://wa.me/51902805278" rel="noopener noreferrer" target="_blank">
+        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.455L0 24zm6.59-4.846c1.62.962 3.238 1.443 4.858 1.444 5.32-.001 9.646-4.329 9.65-9.65.002-2.577-.999-5.002-2.817-6.822-1.819-1.819-4.246-2.818-6.822-2.819-5.325 0-9.655 4.328-9.66 9.649-.001 1.722.453 3.4 1.315 4.91L2.225 21.755l6.422-1.601zm10.741-6.12c-.292-.146-1.729-.854-1.997-.951-.267-.098-.462-.146-.658.146-.195.292-.756.951-.927 1.146-.171.195-.341.219-.633.073-.292-.146-1.233-.454-2.35-1.453-.87-.775-1.457-1.731-1.628-2.024-.171-.292-.018-.45.129-.595.132-.131.292-.341.439-.512.146-.171.195-.292.292-.487.098-.195.049-.366-.024-.512-.073-.146-.658-1.586-.902-2.17-.238-.574-.479-.496-.658-.505-.171-.007-.366-.007-.561-.007-.195 0-.512.073-.78.366-.268.292-1.024 1.001-1.024 2.439 0 1.438 1.049 2.829 1.195 3.024.146.195 2.065 3.154 5.003 4.423.699.302 1.246.482 1.672.618.703.223 1.343.192 1.85.116.565-.084 1.729-.707 1.974-1.39.244-.683.244-1.268.171-1.39-.073-.122-.268-.195-.561-.341z"/>
+        </svg>
+        <!-- Tooltip -->
+        <span
+            class="absolute right-16 bg-black border border-white/20 text-white font-label-sm px-3 py-2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            Enviar Mensaje
+        </span>
     </a>
-</div>
+    <!-- Intersection Observer for Animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
 
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up').forEach((element) => {
+                observer.observe(element);
+            });
+        });
+    </script>
 </body>
+
 </html>

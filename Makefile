@@ -2,7 +2,7 @@
 
 CONTAINER_NAME := my-website-nginx
 IMAGE := nginx
-PORT_HOST := 3000
+PORT_HOST := 3500
 PORT_CONTAINER := 80
 
 help:
@@ -12,7 +12,7 @@ help:
 	@echo "  make clean  - Remove the stopped container"
 
 run:
-	docker run -d --name $(CONTAINER_NAME) -p $(PORT_HOST):$(PORT_CONTAINER) \
+	docker run --name $(CONTAINER_NAME) -p $(PORT_HOST):$(PORT_CONTAINER) \
 		 -v $(PWD)/src:/usr/share/nginx/html $(IMAGE)
 	
 stop:
