@@ -1,102 +1,110 @@
-# ScalePrints - 3D Printing Services Website
+# Inversiones Jojo - Impresión 3D y Corte Láser
 
-Este proyecto es un sitio web profesional construido con HTML5, CSS3 y JavaScript vanilla. Utiliza un contenedor Docker para desarrollo y está configurado para despliegue automático en Vercel mediante GitHub Actions.
+Este proyecto es el sitio web profesional de **Inversiones Jojo** (también conocido como Creaciones Jojo), construido con HTML5, Tailwind CSS (cargado vía CDN) y JavaScript vanilla con animaciones interactivas en WebGL/Three.js. Utiliza un contenedor Docker para el entorno de desarrollo local y está configurado para desplegarse de manera directa y automática en Vercel.
 
 ## Estructura del Proyecto
 
 ```
-my-website
+creacionesjojo-website
 ├── src
-│   ├── index.html              # Página principal responsiva
-│   ├── css
-│   │   └── styles.css          # Estilos (Tailwind CSS)
-│   ├── js
-│   │   └── main.js             # Lógica JavaScript
-│   └── assets
-│       └── fonts               # Fuentes tipográficas
-├── stitch
-│   ├── 01-scaleprints-violeta-neon.html
-│   ├── 01-scaleprints-violeta-neon.png
-│   ├── 02-scaleprints-mobile-whatsapp.html
-│   └── 02-scaleprints-mobile-whatsapp.png
-├── .github/workflows
-│   └── build-and-deploy.yml    # Pipeline CI/CD para Vercel
-├── Dockerfile                  # Configuración Docker
-├── docker-compose.yml          # Orquestación Docker
-├── vercel.json                 # Configuración Vercel
-├── .vercelignore               # Archivos a ignorar en Vercel
-├── Makefile                    # Comandos útiles
-└── README.md                   # Este archivo
+│   ├── index.html              # Página principal responsiva (Inversiones Jojo)
+│   ├── contact.md              # Información de contacto y enlaces a redes sociales
+│   ├── assets
+│   │   └── creaciones.png      # Logo oficial del sitio
+│   └── stitch
+│       └── landing_screenshot.png # Captura de pantalla de la landing page
+├── Dockerfile                  # Configuración de Docker (servidor Nginx)
+├── docker-compose.yml          # Configuración de Docker Compose
+├── vercel.json                 # Configuración de despliegue para Vercel
+├── .vercelignore               # Archivos y carpetas ignorados en Vercel
+├── .dockerignore               # Archivos y carpetas ignorados en Docker
+├── .gitignore                  # Configuración de archivos ignorados por Git
+├── Makefile                    # Comandos útiles para automatizar tareas de desarrollo
+└── README.md                   # Este archivo de documentación
 ```
 
 ## Inicio Rápido
 
 ### Desarrollo Local con Docker
 
-```bash
-# Clonar el repositorio
-git clone <repository-url>
-cd my-website
+Tienes dos alternativas para levantar el proyecto localmente usando Docker:
 
-# Iniciar contenedor con Nginx
+#### Alternativa 1: Usando el Makefile (Puerto 3500)
+
+```bash
+# Iniciar el contenedor con Nginx montando el directorio 'src'
 make run
 
-# Acceder al sitio
-# http://localhost:3000
+# Acceder al sitio en tu navegador
+# http://localhost:3500
 ```
 
-**Comandos disponibles:**
-- `make run` - Inicia el contenedor nginx
-- `make stop` - Detiene el contenedor
-- `make clean` - Elimina el contenedor
+**Comandos disponibles en el Makefile:**
+- `make run` - Construye e inicia el contenedor Nginx en el puerto `3500`.
+- `make stop` - Detiene el contenedor Nginx en ejecución.
+- `make clean` - Detiene y elimina el contenedor.
+
+#### Alternativa 2: Usando Docker Compose (Puerto 8080)
+
+```bash
+# Iniciar los servicios en segundo plano
+docker-compose up -d
+
+# Acceder al sitio en tu navegador
+# http://localhost:8080
+
+# Detener los servicios
+docker-compose down
+```
 
 ### Desarrollo sin Docker
 
+Si no tienes Docker instalado, puedes servir el contenido estático con cualquier servidor web simple. Por ejemplo, usando Python:
+
 ```bash
-# Solo necesitas un servidor HTTP simple
-python -m http.server 3000 -d src
-# http://localhost:3000
+# Iniciar un servidor HTTP simple apuntando a la carpeta 'src'
+python -m http.server 3500 -d src
+
+# Acceder al sitio en tu navegador
+# http://localhost:3500
 ```
+
+---
 
 ## Despliegue en Vercel
 
 ### Opción 1: Conexión Git Automática (Recomendado)
 
-1. **Ir a [Vercel](https://vercel.com)** y crear una cuenta
-2. **Conectar tu repositorio GitHub**:
-   - Click en "Add New..." → "Project"
-   - Selecciona tu repositorio
-   - Vercel detectará automáticamente la configuración de `vercel.json`
-3. **Configurar variables de entorno** (si aplica)
-4. **Desplegar**: Click en "Deploy"
+1. Ve a [Vercel](https://vercel.com) e inicia sesión.
+2. Conecta tu cuenta de GitHub y crea un nuevo proyecto:
+   - Haz clic en **"Add New..."** → **"Project"**
+   - Selecciona el repositorio `creacionesjojo-website`.
+   - Vercel detectará la configuración en `vercel.json` y desplegará la carpeta `src` automáticamente.
+3. Haz clic en **"Deploy"**.
 
-**Despliegues automáticos**: Cada push a `main` o `feature/*` desplegará automáticamente.
+**Despliegues continuos**: Cada push realizado a las ramas principales o de características (`feature/*`) desencadenará un despliegue automático en Vercel.
 
 ### Opción 2: CLI de Vercel
 
+También puedes realizar el despliegue de forma manual utilizando la interfaz de línea de comandos de Vercel:
+
 ```bash
-# Instalar Vercel CLI
+# Instalar la CLI de Vercel globalmente (si no la tienes)
 npm install -g vercel
 
-# Desplegar desde el directorio del proyecto
+# Desplegar el proyecto en modo preview
 vercel
 
-# Desplegar en producción (necesita confirmación)
+# Desplegar directamente a producción
 vercel --prod
 ```
 
-### Opción 3: GitHub Actions
+---
 
-El archivo `.github/workflows/build-and-deploy.yml` despliega automáticamente en Vercel cuando haces push.
+## Contribuciones
 
-## Despliegue
+¡Las contribuciones son bienvenidas! Si deseas mejorar el sitio web o reportar algún problema, por favor abre un *Issue* o envía un *Pull Request*.
 
-La aplicación está configurada con GitHub Actions que automáticamente construye y despliega cuando haces push a las ramas principales. 
+## Licencia
 
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
+Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` (si está presente) para más detalles.
