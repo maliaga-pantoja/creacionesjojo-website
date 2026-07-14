@@ -1,0 +1,84 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    /* Tema Claro (por defecto) */
+    --bg-color: #fafafa;
+    --text-color: #1a1c1c;
+    --text-muted: #5f5e5e;
+    --grid-color: rgba(0, 0, 0, 0.04);
+    --header-bg: rgba(250, 250, 250, 0.9);
+    --card-bg: rgba(0, 0, 0, 0.02);
+    --card-border: rgba(0, 0, 0, 0.08);
+    --card-hover-border: rgba(188, 19, 254, 0.5);
+    --portfolio-section-bg: rgba(0, 0, 0, 0.03);
+    --footer-bg: #eeeeee;
+    --footer-border: rgba(188, 19, 254, 0.2);
+    --text-title: #1a1c1c;
+    --border-light: rgba(0, 0, 0, 0.08);
+    --icon-border: rgba(0, 0, 0, 0.12);
+    --icon-color: #1a1c1c;
+}
+
+:root.dark {
+    /* Tema Oscuro */
+    --bg-color: #0f0f0f;
+    --text-color: #ffffff;
+    --text-muted: #9ca3af;
+    --grid-color: rgba(255, 255, 255, 0.05);
+    --header-bg: rgba(15, 15, 15, 0.9);
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --card-hover-border: rgba(188, 19, 254, 0.5);
+    --portfolio-section-bg: rgba(0, 0, 0, 0.5);
+    --footer-bg: #000000;
+    --footer-border: rgba(188, 19, 254, 0.3);
+    --text-title: #ffffff;
+    --border-light: rgba(255, 255, 255, 0.1);
+    --icon-border: rgba(255, 255, 255, 0.2);
+    --icon-color: #ffffff;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Hanken Grotesk', sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.industrial-grid {
+    background-image:
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+    transition: background-image 0.3s ease;
+}
+
+.accent-text {
+    color: #bc13fe;
+}
+
+.accent-bg {
+    background-color: #bc13fe;
+}
+
+.accent-border {
+    border-color: #bc13fe;
+}
+
+/* Animations */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

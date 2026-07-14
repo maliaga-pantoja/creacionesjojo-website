@@ -6,16 +6,18 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Inversiones Jojo - Impresión 3D y Corte Láser</title>
-    <script>
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        if (savedTheme === 'dark') {
-            document.documentElement.classList.add('dark');
-            document.documentElement.classList.remove('light');
-        } else {
-            document.documentElement.classList.add('light');
-            document.documentElement.classList.remove('dark');
-        }
+    <!-- Inicialización del tema (debe ejecutarse antes del render para evitar FOUC) -->
+    <script src="assets/theme-init.js"></script>
+    <link rel="icon" href="assets/favicon.PNG" type="image/png">
+
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "xm82n2e49j");
     </script>
+
     <!-- Material Symbols -->
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -26,183 +28,9 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <!-- Tailwind Config -->
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "inverse-primary": "#c8c6c5",
-                        "error-container": "#ffdad6",
-                        "on-primary": "#ffffff",
-                        "tertiary-fixed": "#e4e2e1",
-                        "outline": "#747878",
-                        "primary": "#000000",
-                        "on-primary-container": "#858383",
-                        "on-surface-variant": "#444748",
-                        "on-tertiary-fixed-variant": "#474746",
-                        "inverse-on-surface": "#f1f1f1",
-                        "on-surface": "#1a1c1c",
-                        "surface-container-low": "#f3f3f3",
-                        "secondary": "#a33800",
-                        "on-secondary-fixed-variant": "#802a00",
-                        "secondary-fixed": "#ffdbce",
-                        "surface-tint": "#5f5e5e",
-                        "secondary-container": "#cd4800",
-                        "secondary-fixed-dim": "#ffb59a",
-                        "primary-fixed": "#e5e2e1",
-                        "on-secondary-fixed": "#370e00",
-                        "surface-container-highest": "#e2e2e2",
-                        "on-tertiary-container": "#858383",
-                        "error": "#ba1a1a",
-                        "surface-dim": "#dadada",
-                        "on-tertiary": "#ffffff",
-                        "on-error": "#ffffff",
-                        "on-tertiary-fixed": "#1b1c1c",
-                        "on-background": "#1a1c1c",
-                        "primary-container": "#1c1b1b",
-                        "background": "#f9f9f9",
-                        "surface-container-lowest": "#ffffff",
-                        "surface-variant": "#e2e2e2",
-                        "on-secondary": "#ffffff",
-                        "on-primary-fixed": "#1c1b1b",
-                        "on-primary-fixed-variant": "#474646",
-                        "surface": "#f9f9f9",
-                        "tertiary-fixed-dim": "#c8c6c5",
-                        "inverse-surface": "#2f3131",
-                        "tertiary": "#000000",
-                        "tertiary-container": "#1b1c1c",
-                        "surface-container": "#eeeeee",
-                        "outline-variant": "#c4c7c7",
-                        "surface-container-high": "#e8e8e8",
-                        "on-error-container": "#93000a",
-                        "surface-bright": "#f9f9f9",
-                        "primary-fixed-dim": "#c8c6c5",
-                        "on-secondary-container": "#fffbff"
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    spacing: {
-                        "unit": "4px",
-                        "max-width": "1280px",
-                        "margin-mobile": "20px",
-                        "margin-desktop": "64px",
-                        "gutter": "24px"
-                    },
-                    fontFamily: {
-                        "headline-lg-mobile": ["Hanken Grotesk"],
-                        "label-md": ["JetBrains Mono"],
-                        "headline-lg": ["Hanken Grotesk"],
-                        "label-sm": ["JetBrains Mono"],
-                        "display-lg": ["Hanken Grotesk"],
-                        "body-md": ["Hanken Grotesk"],
-                        "body-lg": ["Hanken Grotesk"],
-                        "headline-md": ["Hanken Grotesk"]
-                    },
-                    fontSize: {
-                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "700" }],
-                        "label-md": ["14px", { lineHeight: "20px", fontWeight: "500" }],
-                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }],
-                        "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
-                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800" }],
-                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
-                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
-                        "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }]
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Google Fonts Import */
-        @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        :root {
-            /* Tema Claro (por defecto) */
-            --bg-color: #fafafa;
-            --text-color: #1a1c1c;
-            --text-muted: #5f5e5e;
-            --grid-color: rgba(0, 0, 0, 0.04);
-            --header-bg: rgba(250, 250, 250, 0.9);
-            --card-bg: rgba(0, 0, 0, 0.02);
-            --card-border: rgba(0, 0, 0, 0.08);
-            --card-hover-border: rgba(188, 19, 254, 0.5);
-            --portfolio-section-bg: rgba(0, 0, 0, 0.03);
-            --footer-bg: #eeeeee;
-            --footer-border: rgba(188, 19, 254, 0.2);
-            --text-title: #1a1c1c;
-            --border-light: rgba(0, 0, 0, 0.08);
-            --icon-border: rgba(0, 0, 0, 0.12);
-            --icon-color: #1a1c1c;
-        }
-
-        :root.dark {
-            /* Tema Oscuro */
-            --bg-color: #0f0f0f;
-            --text-color: #ffffff;
-            --text-muted: #9ca3af;
-            --grid-color: rgba(255, 255, 255, 0.05);
-            --header-bg: rgba(15, 15, 15, 0.9);
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --card-hover-border: rgba(188, 19, 254, 0.5);
-            --portfolio-section-bg: rgba(0, 0, 0, 0.5);
-            --footer-bg: #000000;
-            --footer-border: rgba(188, 19, 254, 0.3);
-            --text-title: #ffffff;
-            --border-light: rgba(255, 255, 255, 0.1);
-            --icon-border: rgba(255, 255, 255, 0.2);
-            --icon-color: #ffffff;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Hanken Grotesk', sans-serif;
-            overflow-x: hidden;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .industrial-grid {
-            background-image:
-                linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-                linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-            background-size: 40px 40px;
-            transition: background-image 0.3s ease;
-        }
-
-        .accent-text {
-            color: #bc13fe;
-        }
-
-        .accent-bg {
-            background-color: #bc13fe;
-        }
-
-        .accent-border {
-            border-color: #bc13fe;
-        }
-
-        /* Animations */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <script src="assets/tailwind.config.js"></script>
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="assets/styles.css" />
 </head>
 
 <body class="antialiased industrial-grid">
@@ -213,7 +41,8 @@
             class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-max-width mx-auto">
             <a class="font-headline-md text-headline-md font-bold text-[var(--text-title)] tracking-tighter flex items-center gap-2 transition-colors duration-300"
                 href="#">
-                <img src="assets/creaciones.png" alt="Inversiones Jojo Logo" class="h-10 w-auto object-contain rounded-lg" />
+                <img src="assets/creaciones.png" alt="Inversiones Jojo Logo"
+                    class="h-10 w-auto object-contain rounded-lg" />
                 Inversiones Jojo
             </a>
             <nav id="navbar-links" class="hidden md:flex gap-8 font-label-md text-label-md">
@@ -225,106 +54,32 @@
                     href="#portfolio">Galería</a>
                 <a class="nav-link text-[var(--text-muted)] hover:text-[#bc13fe] transition-colors duration-200"
                     href="#contacto">Contacto</a>
+                <a class="nav-link text-[var(--text-muted)] hover:text-[#bc13fe] transition-colors duration-200"
+                    href="https://calculator.inversiones-jojo.com/" target="_blank"
+                    rel="noopener noreferrer">Calculadora</a>
             </nav>
             <div class="flex items-center gap-4">
-                <button id="theme-toggle" class="w-10 h-10 border border-[var(--icon-border)] flex items-center justify-center text-[var(--icon-color)] hover:text-[#bc13fe] hover:border-[#bc13fe] transition-all duration-300" aria-label="Cambiar tema">
+                <button id="theme-toggle"
+                    class="w-10 h-10 border border-[var(--icon-border)] flex items-center justify-center text-[var(--icon-color)] hover:text-[#bc13fe] hover:border-[#bc13fe] transition-all duration-300"
+                    aria-label="Cambiar tema">
                     <span class="material-symbols-outlined text-xl" id="theme-toggle-icon">dark_mode</span>
                 </button>
                 <a class="bg-[#bc13fe] text-white px-6 py-2 rounded-none font-label-md text-label-md uppercase tracking-wider hover:bg-[#7a00c2] transition-colors duration-200 border border-[#bc13fe] text-center"
-                    href="https://wa.me/51902805278?text=Hola,%20quiero%20saber%20como%20funciona%20el%20servicio%20de%20impresion3d" target="_blank" rel="noopener noreferrer">
+                    href="https://wa.me/51902805278?text=Hola,%20quiero%20saber%20como%20funciona%20el%20servicio%20de%20impresion3d"
+                    target="_blank" rel="noopener noreferrer">
                     Cotizar Ya
                 </a>
             </div>
         </div>
     </header>
     <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden border-b border-[var(--border-light)]">
+    <section
+        class="relative h-screen flex items-center justify-center overflow-hidden border-b border-[var(--border-light)]">
         <!-- STITCH_THREEJS_START:ANIMATION_9 class="absolute inset-0 w-full h-full opacity-50" -->
         <div class="absolute inset-0 w-full h-full opacity-50" style="display:block;">
             <script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
             <div id="threejs-container-ANIMATION_9" style="width:100%;height:100%"></div>
-            <script>
-                    (function () {
-                        const container = document.getElementById('threejs-container-ANIMATION_9');
-                        const devicePixelRatio = window.devicePixelRatio || 1;
-                        const width = container.clientWidth || window.innerWidth;
-                        const height = container.clientHeight || window.innerHeight;
-
-                        const scene = new THREE.Scene();
-                        const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-                        camera.position.z = 5;
-
-                        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-                        renderer.setSize(width, height);
-                        renderer.setPixelRatio(window.devicePixelRatio);
-                        container.appendChild(renderer.domElement);
-
-                        // Abstract 3D Printer / Technical Object
-                        const group = new THREE.Group();
-
-                        // Main Frame
-                        const frameGeom = new THREE.BoxGeometry(3, 3, 0.2);
-                        const wireMaterial = new THREE.MeshPhongMaterial({
-                            color: 0xbc13fe,
-                            wireframe: true,
-                            transparent: true,
-                            opacity: 0.5
-                        });
-                        const frame = new THREE.Mesh(frameGeom, wireMaterial);
-                        group.add(frame);
-
-                        // Inner "Printed" Structure
-                        const innerGeom = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
-                        const innerMaterial = new THREE.MeshPhongMaterial({
-                            color: 0xffffff,
-                            emissive: 0x333333,
-                            shininess: 100
-                        });
-                        const inner = new THREE.Mesh(innerGeom, innerMaterial);
-                        group.add(inner);
-
-                        // Vertical Pillars
-                        const pillarGeom = new THREE.CylinderGeometry(0.05, 0.05, 4, 12);
-                        const pillarMat = new THREE.MeshPhongMaterial({ color: 0x666666 });
-                        for (let i = -1; i <= 1; i += 2) {
-                            for (let j = -1; j <= 1; j += 2) {
-                                const pillar = new THREE.Mesh(pillarGeom, pillarMat);
-                                pillar.position.set(i * 1.6, 0, j * 0.2);
-                                group.add(pillar);
-                            }
-                        }
-
-                        scene.add(group);
-
-                        const light = new THREE.DirectionalLight(0xffffff, 1);
-                        light.position.set(5, 5, 5);
-                        scene.add(light);
-                        scene.add(new THREE.AmbientLight(0x404040));
-
-                        function animate() {
-                            requestAnimationFrame(animate);
-                            group.rotation.y += 0.005;
-                            inner.rotation.x += 0.01;
-                            
-                            // Adaptar colores del modelo en tiempo real
-                            const isDark = document.documentElement.classList.contains('dark');
-                            inner.material.color.setHex(isDark ? 0xffffff : 0x1c1b1b);
-                            inner.material.emissive.setHex(isDark ? 0x333333 : 0xcccccc);
-                            
-                            renderer.render(scene, camera);
-                        }
-
-                        window.addEventListener('resize', () => {
-                            const w = container.clientWidth || window.innerWidth;
-                            const h = container.clientHeight || window.innerHeight;
-                            camera.aspect = w / h;
-                            camera.updateProjectionMatrix();
-                            renderer.setSize(w, h);
-                        });
-
-                        animate();
-                    })();
-            </script>
+            <script src="assets/hero-animation.js" defer></script>
         </div>
         <!-- STITCH_THREEJS_END:ANIMATION_9 -->
         <div class="relative z-10 text-center px-margin-mobile max-w-4xl mx-auto flex flex-col items-center">
@@ -437,7 +192,8 @@ void main() {
                 </div>
                 <!-- STITCH_SHADER_END:ANIMATION_10 -->
             </div>
-            <h1 class="font-display-lg text-display-lg text-[var(--text-title)] mb-6 tracking-tight fade-in-up transition-colors duration-300">
+            <h1
+                class="font-display-lg text-display-lg text-[var(--text-title)] mb-6 tracking-tight fade-in-up transition-colors duration-300">
                 De la Idea a la <span class="accent-text">Realidad</span>
             </h1>
             <p class="font-body-lg text-body-lg text-[var(--text-muted)] mb-10 max-w-2xl mx-auto fade-in-up transition-colors duration-300"
@@ -455,7 +211,8 @@ void main() {
         <div class="mb-16 fade-in-up">
             <span class="font-label-sm text-label-sm text-gray-500 uppercase tracking-widest mb-2 block">01 /
                 Capacidades</span>
-            <h2 class="font-headline-lg text-headline-lg text-[var(--text-title)] transition-colors duration-300">Servicios Técnicos</h2>
+            <h2 class="font-headline-lg text-headline-lg text-[var(--text-title)] transition-colors duration-300">
+                Servicios Técnicos</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Service Card 1 -->
@@ -465,8 +222,12 @@ void main() {
                     class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
                     <span class="material-symbols-outlined" data-icon="category">category</span>
                 </div>
-                <h3 class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">Figuras &amp; Arte</h3>
-                <p class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">Piezas de colección y decorativas de
+                <h3
+                    class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">
+                    Figuras &amp; Arte</h3>
+                <p
+                    class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">
+                    Piezas de colección y decorativas de
                     alta fidelidad.</p>
             </div>
             <!-- Service Card 2 -->
@@ -476,8 +237,12 @@ void main() {
                     class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
                     <span class="material-symbols-outlined" data-icon="speed">speed</span>
                 </div>
-                <h3 class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">Prototipos Rápidos</h3>
-                <p class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">Validación funcional en 24h para
+                <h3
+                    class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">
+                    Prototipos Rápidos</h3>
+                <p
+                    class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">
+                    Validación funcional en 24h para
                     ingenierías.</p>
             </div>
             <!-- Service Card 3 -->
@@ -487,8 +252,12 @@ void main() {
                     class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
                     <span class="material-symbols-outlined" data-icon="foundation">foundation</span>
                 </div>
-                <h3 class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">Maquetas a Escala</h3>
-                <p class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">Arquitectura y detalle milimétrico
+                <h3
+                    class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">
+                    Maquetas a Escala</h3>
+                <p
+                    class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">
+                    Arquitectura y detalle milimétrico
                     estructural.</p>
             </div>
             <!-- Service Card 4 -->
@@ -498,20 +267,28 @@ void main() {
                     class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
                     <span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
                 </div>
-                <h3 class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">Asesorías 3D</h3>
-                <p class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">Optimización de diseños para
+                <h3
+                    class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">
+                    Asesorías 3D</h3>
+                <p
+                    class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">
+                    Optimización de diseños para
                     fabricación eficiente.</p>
             </div>
         </div>
     </section>
     <!-- Gallery Portfolio -->
-    <section class="py-24 border-t border-[var(--border-light)] bg-[var(--portfolio-section-bg)] transition-colors duration-300" id="portfolio">
+    <section
+        class="py-24 border-t border-[var(--border-light)] bg-[var(--portfolio-section-bg)] transition-colors duration-300"
+        id="portfolio">
         <div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop">
             <div class="mb-16 flex justify-between items-end fade-in-up">
                 <div>
                     <span class="font-label-sm text-label-sm text-gray-500 uppercase tracking-widest mb-2 block">02 /
                         Resultados</span>
-                    <h2 class="font-headline-lg text-headline-lg text-[var(--text-title)] transition-colors duration-300">Calidad Industrial</h2>
+                    <h2
+                        class="font-headline-lg text-headline-lg text-[var(--text-title)] transition-colors duration-300">
+                        Calidad Industrial</h2>
                 </div>
                 <a class="font-label-md text-label-md text-[#bc13fe] hover:text-[var(--text-title)] transition-colors flex items-center gap-2"
                     href="#">
@@ -571,21 +348,26 @@ void main() {
         </div>
     </section>
     <!-- Footer / Contact -->
-    <footer id="contacto" class="bg-[var(--footer-bg)] border-t border-[var(--footer-border)] mt-auto transition-colors duration-300">
+    <footer id="contacto"
+        class="bg-[var(--footer-bg)] border-t border-[var(--footer-border)] mt-auto transition-colors duration-300">
         <div
             class="grid grid-cols-1 md:grid-cols-2 gap-gutter px-margin-mobile md:px-margin-desktop py-16 max-w-max-width mx-auto">
             <div class="fade-in-up">
-                <a class="font-headline-md text-headline-md text-[var(--text-title)] mb-6 flex items-center gap-2 transition-colors duration-300" href="#">
-                    <img src="assets/creaciones.png" alt="Inversiones Jojo Logo" class="h-8 w-auto object-contain rounded-lg" />
+                <a class="font-headline-md text-headline-md text-[var(--text-title)] mb-6 flex items-center gap-2 transition-colors duration-300"
+                    href="#">
+                    <img src="assets/creaciones.png" alt="Inversiones Jojo Logo"
+                        class="h-8 w-auto object-contain rounded-lg" />
                     Inversiones Jojo
                 </a>
-                <p class="font-label-md text-[var(--text-muted)] mb-8 max-w-sm leading-relaxed transition-colors duration-300">
+                <p
+                    class="font-label-md text-[var(--text-muted)] mb-8 max-w-sm leading-relaxed transition-colors duration-300">
                     Precisión industrial y creatividad sin límites. Especialistas en materializar proyectos complejos
                     con tecnología de vanguardia.
                 </p>
                 <div class="flex gap-4">
                     <a class="w-10 h-10 border border-[var(--icon-border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-title)] hover:border-[var(--text-title)] transition-all"
-                        href="https://wa.me/51902805278?text=Hola,%20quiero%20saber%20como%20funciona%20el%20servicio%20de%20impresion3d" target="_blank" title="WhatsApp">
+                        href="https://wa.me/51902805278?text=Hola,%20quiero%20saber%20como%20funciona%20el%20servicio%20de%20impresion3d"
+                        target="_blank" title="WhatsApp">
                         <span class="font-label-sm">WA</span>
                     </a>
                     <a class="w-10 h-10 border border-[var(--icon-border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-title)] hover:border-[var(--text-title)] transition-all"
@@ -607,7 +389,8 @@ void main() {
                 </div>
             </div>
             <div class="fade-in-up" style="transition-delay: 0.1s;">
-                <h4 class="font-label-md text-[var(--text-title)] uppercase tracking-widest mb-6 border-b border-[var(--border-light)] pb-4 transition-colors duration-300">
+                <h4
+                    class="font-label-md text-[var(--text-title)] uppercase tracking-widest mb-6 border-b border-[var(--border-light)] pb-4 transition-colors duration-300">
                     Contacto</h4>
                 <ul class="space-y-4 font-label-md text-[var(--text-muted)] transition-colors duration-300">
                     <li class="flex items-start gap-4">
@@ -626,7 +409,8 @@ void main() {
                 </ul>
             </div>
         </div>
-        <div class="border-t border-[var(--border-light)] px-margin-mobile md:px-margin-desktop py-6 text-center transition-colors duration-300">
+        <div
+            class="border-t border-[var(--border-light)] px-margin-mobile md:px-margin-desktop py-6 text-center transition-colors duration-300">
             <p class="font-label-sm text-label-sm text-[var(--text-muted)] opacity-60 transition-colors duration-300">
                 © 2024 Inversiones Jojo. Todos los derechos reservados.
             </p>
@@ -634,9 +418,11 @@ void main() {
     </footer>
     <!-- SideNavBar (Floating WhatsApp) -->
     <a class="fixed bottom-8 right-8 rounded-full h-14 w-14 shadow-lg bg-[#bc13fe] text-white flex items-center justify-center cursor-pointer hover:scale-110 transition-transform z-50 group"
-        href="https://wa.me/51902805278?text=Hola,%20quiero%20saber%20como%20funciona%20el%20servicio%20de%20impresion3d" rel="noopener noreferrer" target="_blank">
+        href="https://wa.me/51902805278?text=Hola,%20quiero%20saber%20como%20funciona%20el%20servicio%20de%20impresion3d"
+        rel="noopener noreferrer" target="_blank">
         <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.455L0 24zm6.59-4.846c1.62.962 3.238 1.443 4.858 1.444 5.32-.001 9.646-4.329 9.65-9.65.002-2.577-.999-5.002-2.817-6.822-1.819-1.819-4.246-2.818-6.822-2.819-5.325 0-9.655 4.328-9.66 9.649-.001 1.722.453 3.4 1.315 4.91L2.225 21.755l6.422-1.601zm10.741-6.12c-.292-.146-1.729-.854-1.997-.951-.267-.098-.462-.146-.658.146-.195.292-.756.951-.927 1.146-.171.195-.341.219-.633.073-.292-.146-1.233-.454-2.35-1.453-.87-.775-1.457-1.731-1.628-2.024-.171-.292-.018-.45.129-.595.132-.131.292-.341.439-.512.146-.171.195-.292.292-.487.098-.195.049-.366-.024-.512-.073-.146-.658-1.586-.902-2.17-.238-.574-.479-.496-.658-.505-.171-.007-.366-.007-.561-.007-.195 0-.512.073-.78.366-.268.292-1.024 1.001-1.024 2.439 0 1.438 1.049 2.829 1.195 3.024.146.195 2.065 3.154 5.003 4.423.699.302 1.246.482 1.672.618.703.223 1.343.192 1.85.116.565-.084 1.729-.707 1.974-1.39.244-.683.244-1.268.171-1.39-.073-.122-.268-.195-.561-.341z"/>
+            <path
+                d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.455L0 24zm6.59-4.846c1.62.962 3.238 1.443 4.858 1.444 5.32-.001 9.646-4.329 9.65-9.65.002-2.577-.999-5.002-2.817-6.822-1.819-1.819-4.246-2.818-6.822-2.819-5.325 0-9.655 4.328-9.66 9.649-.001 1.722.453 3.4 1.315 4.91L2.225 21.755l6.422-1.601zm10.741-6.12c-.292-.146-1.729-.854-1.997-.951-.267-.098-.462-.146-.658.146-.195.292-.756.951-.927 1.146-.171.195-.341.219-.633.073-.292-.146-1.233-.454-2.35-1.453-.87-.775-1.457-1.731-1.628-2.024-.171-.292-.018-.45.129-.595.132-.131.292-.341.439-.512.146-.171.195-.292.292-.487.098-.195.049-.366-.024-.512-.073-.146-.658-1.586-.902-2.17-.238-.574-.479-.496-.658-.505-.171-.007-.366-.007-.561-.007-.195 0-.512.073-.78.366-.268.292-1.024 1.001-1.024 2.439 0 1.438 1.049 2.829 1.195 3.024.146.195 2.065 3.154 5.003 4.423.699.302 1.246.482 1.672.618.703.223 1.343.192 1.85.116.565-.084 1.729-.707 1.974-1.39.244-.683.244-1.268.171-1.39-.073-.122-.268-.195-.561-.341z" />
         </svg>
         <!-- Tooltip -->
         <span
@@ -644,101 +430,8 @@ void main() {
             Enviar Mensaje
         </span>
     </a>
-    <!-- Intersection Observer for Animations -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.fade-in-up').forEach((element) => {
-                observer.observe(element);
-            });
-
-            // Navegación menú activo dinámico (Scroll Spy)
-            const navLinks = document.querySelectorAll('#navbar-links .nav-link');
-            const secServices = document.getElementById('services');
-            const secPortfolio = document.getElementById('portfolio');
-            const secContacto = document.getElementById('contacto');
-
-            function setActiveLink(activeLink) {
-                navLinks.forEach(link => {
-                    link.classList.remove('text-[#bc13fe]', 'border-b-2', 'border-[#bc13fe]', 'pb-1');
-                    link.classList.add('text-[var(--text-muted)]', 'hover:text-[#bc13fe]', 'transition-colors', 'duration-200');
-                });
-                if (activeLink) {
-                    activeLink.classList.add('text-[#bc13fe]', 'border-b-2', 'border-[#bc13fe]', 'pb-1');
-                    activeLink.classList.remove('text-[var(--text-muted)]', 'hover:text-[#bc13fe]');
-                }
-            }
-
-            function updateActiveOnScroll() {
-                const scrollPos = window.scrollY + 150; // offset para disparadores
-
-                if (secContacto && (scrollPos >= secContacto.offsetTop || (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50)) {
-                    setActiveLink(navLinks[3]);
-                } else if (secPortfolio && scrollPos >= secPortfolio.offsetTop) {
-                    setActiveLink(navLinks[2]);
-                } else if (secServices && scrollPos >= secServices.offsetTop) {
-                    setActiveLink(navLinks[1]);
-                } else {
-                    setActiveLink(navLinks[0]); // Inicio
-                }
-            }
-
-            window.addEventListener('scroll', updateActiveOnScroll);
-            updateActiveOnScroll(); // Ejecutar al inicio
-
-            // Clic directo
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    setActiveLink(link);
-                });
-            });
-        });
-    </script>
-    <!-- Theme Toggle logic script -->
-    <script>
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeToggleIcon = document.getElementById('theme-toggle-icon');
-
-        function updateToggleIcon() {
-            if (document.documentElement.classList.contains('dark')) {
-                themeToggleIcon.textContent = 'light_mode';
-                themeToggleBtn.setAttribute('title', 'Cambiar a modo claro');
-            } else {
-                themeToggleIcon.textContent = 'dark_mode';
-                themeToggleBtn.setAttribute('title', 'Cambiar a modo oscuro');
-            }
-        }
-
-        updateToggleIcon();
-
-        themeToggleBtn.addEventListener('click', () => {
-            const isDark = document.documentElement.classList.contains('dark');
-            if (isDark) {
-                document.documentElement.classList.remove('dark');
-                document.documentElement.classList.add('light');
-                localStorage.setItem('theme', 'light');
-            } else {
-                document.documentElement.classList.remove('light');
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
-            updateToggleIcon();
-        });
-    </script>
+    <!-- Scripts principales -->
+    <script src="assets/main.js" defer></script>
 </body>
 
 </html>
