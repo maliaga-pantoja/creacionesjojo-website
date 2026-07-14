@@ -6,6 +6,16 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Inversiones Jojo - Impresión 3D y Corte Láser</title>
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+        } else {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
     <!-- Material Symbols -->
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -111,19 +121,58 @@
         /* Google Fonts Import */
         @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
+        :root {
+            /* Tema Claro (por defecto) */
+            --bg-color: #fafafa;
+            --text-color: #1a1c1c;
+            --text-muted: #5f5e5e;
+            --grid-color: rgba(0, 0, 0, 0.04);
+            --header-bg: rgba(250, 250, 250, 0.9);
+            --card-bg: rgba(0, 0, 0, 0.02);
+            --card-border: rgba(0, 0, 0, 0.08);
+            --card-hover-border: rgba(188, 19, 254, 0.5);
+            --portfolio-section-bg: rgba(0, 0, 0, 0.03);
+            --footer-bg: #eeeeee;
+            --footer-border: rgba(188, 19, 254, 0.2);
+            --text-title: #1a1c1c;
+            --border-light: rgba(0, 0, 0, 0.08);
+            --icon-border: rgba(0, 0, 0, 0.12);
+            --icon-color: #1a1c1c;
+        }
+
+        :root.dark {
+            /* Tema Oscuro */
+            --bg-color: #0f0f0f;
+            --text-color: #ffffff;
+            --text-muted: #9ca3af;
+            --grid-color: rgba(255, 255, 255, 0.05);
+            --header-bg: rgba(15, 15, 15, 0.9);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-hover-border: rgba(188, 19, 254, 0.5);
+            --portfolio-section-bg: rgba(0, 0, 0, 0.5);
+            --footer-bg: #000000;
+            --footer-border: rgba(188, 19, 254, 0.3);
+            --text-title: #ffffff;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --icon-border: rgba(255, 255, 255, 0.2);
+            --icon-color: #ffffff;
+        }
+
         body {
-            background-color: #0f0f0f;
-            /* Dark mode override as requested */
-            color: #ffffff;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: 'Hanken Grotesk', sans-serif;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .industrial-grid {
             background-image:
-                linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+                linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
             background-size: 40px 40px;
+            transition: background-image 0.3s ease;
         }
 
         .accent-text {
@@ -155,29 +204,34 @@
 <body class="antialiased industrial-grid">
     <!-- TopNavBar -->
     <header
-        class="w-full top-0 sticky z-50 bg-[#0f0f0f]/90 backdrop-blur-md border-b border-outline-variant dark:border-outline">
+        class="w-full top-0 sticky z-50 bg-[var(--header-bg)] backdrop-blur-md border-b border-[var(--border-light)] transition-colors duration-300">
         <div
             class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-max-width mx-auto">
-            <a class="font-headline-md text-headline-md font-bold text-white tracking-tighter flex items-center gap-2"
+            <a class="font-headline-md text-headline-md font-bold text-[var(--text-title)] tracking-tighter flex items-center gap-2 transition-colors duration-300"
                 href="#">
                 <img src="assets/creaciones.png" alt="Inversiones Jojo Logo" class="h-10 w-auto object-contain rounded-lg" />
                 Inversiones Jojo
             </a>
             <nav class="hidden md:flex gap-8 font-label-md text-label-md">
-                <a class="text-on-surface-variant hover:text-[#bc13fe] transition-colors duration-200"
+                <a class="text-[var(--text-muted)] hover:text-[#bc13fe] transition-colors duration-200"
                     href="#services">Servicios</a>
                 <a class="text-[#bc13fe] border-b-2 border-[#bc13fe] pb-1" href="#portfolio">Galería</a>
-                <a class="text-on-surface-variant hover:text-[#bc13fe] transition-colors duration-200"
+                <a class="text-[var(--text-muted)] hover:text-[#bc13fe] transition-colors duration-200"
                     href="#contacto">Contacto</a>
             </nav>
-            <button
-                class="bg-[#bc13fe] text-white px-6 py-2 rounded-none font-label-md text-label-md uppercase tracking-wider hover:bg-[#7a00c2] transition-colors duration-200 border border-[#bc13fe]">
-                Cotizar Ya
-            </button>
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="w-10 h-10 border border-[var(--icon-border)] flex items-center justify-center text-[var(--icon-color)] hover:text-[#bc13fe] hover:border-[#bc13fe] transition-all duration-300" aria-label="Cambiar tema">
+                    <span class="material-symbols-outlined text-xl" id="theme-toggle-icon">dark_mode</span>
+                </button>
+                <button
+                    class="bg-[#bc13fe] text-white px-6 py-2 rounded-none font-label-md text-label-md uppercase tracking-wider hover:bg-[#7a00c2] transition-colors duration-200 border border-[#bc13fe]">
+                    Cotizar Ya
+                </button>
+            </div>
         </div>
     </header>
     <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden border-b border-white/10">
+    <section class="relative h-screen flex items-center justify-center overflow-hidden border-b border-[var(--border-light)]">
         <!-- STITCH_THREEJS_START:ANIMATION_9 class="absolute inset-0 w-full h-full opacity-50" -->
         <div class="absolute inset-0 w-full h-full opacity-50" style="display:block;">
             <script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
@@ -244,6 +298,12 @@
                             requestAnimationFrame(animate);
                             group.rotation.y += 0.005;
                             inner.rotation.x += 0.01;
+                            
+                            // Adaptar colores del modelo en tiempo real
+                            const isDark = document.documentElement.classList.contains('dark');
+                            inner.material.color.setHex(isDark ? 0xffffff : 0x1c1b1b);
+                            inner.material.emissive.setHex(isDark ? 0x333333 : 0xcccccc);
+                            
                             renderer.render(scene, camera);
                         }
 
@@ -370,14 +430,14 @@ void main() {
                 </div>
                 <!-- STITCH_SHADER_END:ANIMATION_10 -->
             </div>
-            <h1 class="font-display-lg text-display-lg text-white mb-6 tracking-tight fade-in-up">
+            <h1 class="font-display-lg text-display-lg text-[var(--text-title)] mb-6 tracking-tight fade-in-up transition-colors duration-300">
                 De la Idea a la <span class="accent-text">Realidad</span>
             </h1>
-            <p class="font-body-lg text-body-lg text-gray-400 mb-10 max-w-2xl mx-auto fade-in-up"
+            <p class="font-body-lg text-body-lg text-[var(--text-muted)] mb-10 max-w-2xl mx-auto fade-in-up transition-colors duration-300"
                 style="transition-delay: 0.1s;">
                 Impresión 3D y Corte Láser de alta precisión para proyectos industriales y creativos.
             </p>
-            <a class="inline-block border-2 accent-border text-white px-8 py-4 font-label-md text-label-md uppercase tracking-widest hover:bg-[#bc13fe] transition-colors duration-300 fade-in-up"
+            <a class="inline-block border-2 accent-border text-[var(--text-title)] hover:text-white px-8 py-4 font-label-md text-label-md uppercase tracking-widest hover:bg-[#bc13fe] transition-colors duration-300 fade-in-up"
                 href="#portfolio" style="transition-delay: 0.2s;">
                 Ver Portafolio
             </a>
@@ -388,65 +448,65 @@ void main() {
         <div class="mb-16 fade-in-up">
             <span class="font-label-sm text-label-sm text-gray-500 uppercase tracking-widest mb-2 block">01 /
                 Capacidades</span>
-            <h2 class="font-headline-lg text-headline-lg text-white">Servicios Técnicos</h2>
+            <h2 class="font-headline-lg text-headline-lg text-[var(--text-title)] transition-colors duration-300">Servicios Técnicos</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Service Card 1 -->
             <div
-                class="border border-white/10 p-8 hover:border-[#bc13fe]/50 transition-colors bg-white/5 backdrop-blur-sm group fade-in-up">
+                class="border border-[var(--card-border)] p-8 hover:border-[var(--card-hover-border)] transition-colors duration-300 bg-[var(--card-bg)] backdrop-blur-sm group fade-in-up">
                 <div
-                    class="w-12 h-12 mb-6 border border-white/20 flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-white">
+                    class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
                     <span class="material-symbols-outlined" data-icon="category">category</span>
                 </div>
-                <h3 class="font-headline-md text-headline-md text-white mb-3">Figuras &amp; Arte</h3>
-                <p class="font-body-md text-body-md text-gray-400 font-label-md">Piezas de colección y decorativas de
+                <h3 class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">Figuras &amp; Arte</h3>
+                <p class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">Piezas de colección y decorativas de
                     alta fidelidad.</p>
             </div>
             <!-- Service Card 2 -->
-            <div class="border border-white/10 p-8 hover:border-[#bc13fe]/50 transition-colors bg-white/5 backdrop-blur-sm group fade-in-up"
+            <div class="border border-[var(--card-border)] p-8 hover:border-[var(--card-hover-border)] transition-colors duration-300 bg-[var(--card-bg)] backdrop-blur-sm group fade-in-up"
                 style="transition-delay: 0.1s;">
                 <div
-                    class="w-12 h-12 mb-6 border border-white/20 flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-white">
+                    class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
                     <span class="material-symbols-outlined" data-icon="speed">speed</span>
                 </div>
-                <h3 class="font-headline-md text-headline-md text-white mb-3">Prototipos Rápidos</h3>
-                <p class="font-body-md text-body-md text-gray-400 font-label-md">Validación funcional en 24h para
+                <h3 class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">Prototipos Rápidos</h3>
+                <p class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">Validación funcional en 24h para
                     ingenierías.</p>
             </div>
             <!-- Service Card 3 -->
-            <div class="border border-white/10 p-8 hover:border-[#bc13fe]/50 transition-colors bg-white/5 backdrop-blur-sm group fade-in-up"
+            <div class="border border-[var(--card-border)] p-8 hover:border-[var(--card-hover-border)] transition-colors duration-300 bg-[var(--card-bg)] backdrop-blur-sm group fade-in-up"
                 style="transition-delay: 0.2s;">
                 <div
-                    class="w-12 h-12 mb-6 border border-white/20 flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-white">
+                    class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
                     <span class="material-symbols-outlined" data-icon="foundation">foundation</span>
                 </div>
-                <h3 class="font-headline-md text-headline-md text-white mb-3">Maquetas a Escala</h3>
-                <p class="font-body-md text-body-md text-gray-400 font-label-md">Arquitectura y detalle milimétrico
+                <h3 class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">Maquetas a Escala</h3>
+                <p class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">Arquitectura y detalle milimétrico
                     estructural.</p>
             </div>
             <!-- Service Card 4 -->
-            <div class="border border-white/10 p-8 hover:border-[#bc13fe]/50 transition-colors bg-white/5 backdrop-blur-sm group fade-in-up"
+            <div class="border border-[var(--card-border)] p-8 hover:border-[var(--card-hover-border)] transition-colors duration-300 bg-[var(--card-bg)] backdrop-blur-sm group fade-in-up"
                 style="transition-delay: 0.3s;">
                 <div
-                    class="w-12 h-12 mb-6 border border-white/20 flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-white">
+                    class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
                     <span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
                 </div>
-                <h3 class="font-headline-md text-headline-md text-white mb-3">Asesorías 3D</h3>
-                <p class="font-body-md text-body-md text-gray-400 font-label-md">Optimización de diseños para
+                <h3 class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">Asesorías 3D</h3>
+                <p class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">Optimización de diseños para
                     fabricación eficiente.</p>
             </div>
         </div>
     </section>
     <!-- Gallery Portfolio -->
-    <section class="py-24 border-t border-white/10 bg-black/50" id="portfolio">
+    <section class="py-24 border-t border-[var(--border-light)] bg-[var(--portfolio-section-bg)] transition-colors duration-300" id="portfolio">
         <div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop">
             <div class="mb-16 flex justify-between items-end fade-in-up">
                 <div>
                     <span class="font-label-sm text-label-sm text-gray-500 uppercase tracking-widest mb-2 block">02 /
                         Resultados</span>
-                    <h2 class="font-headline-lg text-headline-lg text-white">Calidad Industrial</h2>
+                    <h2 class="font-headline-lg text-headline-lg text-[var(--text-title)] transition-colors duration-300">Calidad Industrial</h2>
                 </div>
-                <a class="font-label-md text-label-md text-[#bc13fe] hover:text-white transition-colors flex items-center gap-2"
+                <a class="font-label-md text-label-md text-[#bc13fe] hover:text-[var(--text-title)] transition-colors flex items-center gap-2"
                     href="#">
                     Ver Todo <span class="material-symbols-outlined text-sm"
                         data-icon="arrow_forward">arrow_forward</span>
@@ -454,7 +514,7 @@ void main() {
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Portfolio Item 1 -->
-                <div class="relative group overflow-hidden border border-white/10 fade-in-up">
+                <div class="relative group overflow-hidden border border-[var(--card-border)] fade-in-up">
                     <div class="aspect-[4/5] bg-gray-900 w-full relative">
                         <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
                             data-alt="A high-contrast macro photograph of a 3D printed industrial gear prototype, showcasing perfect layer lines and precision engineering. Dark industrial setting with dramatic top-down studio lighting casting sharp shadows. The material appears to be a sleek dark grey resin with high detail accuracy. Minimalist, technical aesthetic emphasizing manufacturing quality."
@@ -469,7 +529,7 @@ void main() {
                     </div>
                 </div>
                 <!-- Portfolio Item 2 -->
-                <div class="relative group overflow-hidden border border-white/10 fade-in-up"
+                <div class="relative group overflow-hidden border border-[var(--card-border)] fade-in-up"
                     style="transition-delay: 0.1s;">
                     <div class="aspect-[4/5] bg-gray-900 w-full relative">
                         <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
@@ -485,7 +545,7 @@ void main() {
                     </div>
                 </div>
                 <!-- Portfolio Item 3 -->
-                <div class="relative group overflow-hidden border border-white/10 fade-in-up"
+                <div class="relative group overflow-hidden border border-[var(--card-border)] fade-in-up"
                     style="transition-delay: 0.2s;">
                     <div class="aspect-[4/5] bg-gray-900 w-full relative">
                         <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
@@ -504,45 +564,45 @@ void main() {
         </div>
     </section>
     <!-- Footer / Contact -->
-    <footer class="bg-black border-t border-[#bc13fe]/30 mt-auto">
+    <footer class="bg-[var(--footer-bg)] border-t border-[var(--footer-border)] mt-auto transition-colors duration-300">
         <div
             class="grid grid-cols-1 md:grid-cols-2 gap-gutter px-margin-mobile md:px-margin-desktop py-16 max-w-max-width mx-auto">
             <div class="fade-in-up">
-                <a class="font-headline-md text-headline-md text-white mb-6 flex items-center gap-2" href="#">
+                <a class="font-headline-md text-headline-md text-[var(--text-title)] mb-6 flex items-center gap-2 transition-colors duration-300" href="#">
                     <img src="assets/creaciones.png" alt="Inversiones Jojo Logo" class="h-8 w-auto object-contain rounded-lg" />
                     Inversiones Jojo
                 </a>
-                <p class="font-label-md text-gray-400 mb-8 max-w-sm leading-relaxed">
+                <p class="font-label-md text-[var(--text-muted)] mb-8 max-w-sm leading-relaxed transition-colors duration-300">
                     Precisión industrial y creatividad sin límites. Especialistas en materializar proyectos complejos
                     con tecnología de vanguardia.
                 </p>
                 <div class="flex gap-4">
-                    <a class="w-10 h-10 border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-all"
+                    <a class="w-10 h-10 border border-[var(--icon-border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-title)] hover:border-[var(--text-title)] transition-all"
                         href="https://wa.me/51902805278" target="_blank" title="WhatsApp">
                         <span class="font-label-sm">WA</span>
                     </a>
-                    <a class="w-10 h-10 border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-all"
+                    <a class="w-10 h-10 border border-[var(--icon-border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-title)] hover:border-[var(--text-title)] transition-all"
                         href="https://www.instagram.com/creacionesjojo/" target="_blank" title="Instagram">
                         <span class="font-label-sm">IG</span>
                     </a>
-                    <a class="w-10 h-10 border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-all"
+                    <a class="w-10 h-10 border border-[var(--icon-border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-title)] hover:border-[var(--text-title)] transition-all"
                         href="https://www.tiktok.com/@creacionesjojo.peru" target="_blank" title="TikTok">
                         <span class="font-label-sm">TK</span>
                     </a>
-                    <a class="w-10 h-10 border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-all"
+                    <a class="w-10 h-10 border border-[var(--icon-border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-title)] hover:border-[var(--text-title)] transition-all"
                         href="https://www.youtube.com/@creacionesjojoperu" target="_blank" title="YouTube">
                         <span class="font-label-sm">YT</span>
                     </a>
-                    <a class="w-10 h-10 border border-white/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-all"
+                    <a class="w-10 h-10 border border-[var(--icon-border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-title)] hover:border-[var(--text-title)] transition-all"
                         href="https://cults3d.com/@creacionesjojoperu" target="_blank" title="Cults3D">
                         <span class="font-label-sm">C3D</span>
                     </a>
                 </div>
             </div>
             <div class="fade-in-up" style="transition-delay: 0.1s;">
-                <h4 class="font-label-md text-white uppercase tracking-widest mb-6 border-b border-white/10 pb-4">
+                <h4 class="font-label-md text-[var(--text-title)] uppercase tracking-widest mb-6 border-b border-[var(--border-light)] pb-4 transition-colors duration-300">
                     Contacto</h4>
-                <ul class="space-y-4 font-label-md text-gray-400">
+                <ul class="space-y-4 font-label-md text-[var(--text-muted)] transition-colors duration-300">
                     <li class="flex items-start gap-4">
                         <span class="material-symbols-outlined text-[#d9480f] mt-1"
                             data-icon="location_on">location_on</span>
@@ -559,8 +619,8 @@ void main() {
                 </ul>
             </div>
         </div>
-        <div class="border-t border-white/10 px-margin-mobile md:px-margin-desktop py-6 text-center">
-            <p class="font-label-sm text-label-sm text-gray-600">
+        <div class="border-t border-[var(--border-light)] px-margin-mobile md:px-margin-desktop py-6 text-center transition-colors duration-300">
+            <p class="font-label-sm text-label-sm text-[var(--text-muted)] opacity-60 transition-colors duration-300">
                 © 2024 Inversiones Jojo. Todos los derechos reservados.
             </p>
         </div>
@@ -573,7 +633,7 @@ void main() {
         </svg>
         <!-- Tooltip -->
         <span
-            class="absolute right-16 bg-black border border-white/20 text-white font-label-sm px-3 py-2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            class="absolute right-16 bg-[var(--footer-bg)] border border-[var(--border-light)] text-[var(--text-title)] font-label-sm px-3 py-2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none transition-colors duration-300">
             Enviar Mensaje
         </span>
     </a>
@@ -598,6 +658,37 @@ void main() {
             document.querySelectorAll('.fade-in-up').forEach((element) => {
                 observer.observe(element);
             });
+        });
+    </script>
+    <!-- Theme Toggle logic script -->
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleIcon = document.getElementById('theme-toggle-icon');
+
+        function updateToggleIcon() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleIcon.textContent = 'light_mode';
+                themeToggleBtn.setAttribute('title', 'Cambiar a modo claro');
+            } else {
+                themeToggleIcon.textContent = 'dark_mode';
+                themeToggleBtn.setAttribute('title', 'Cambiar a modo oscuro');
+            }
+        }
+
+        updateToggleIcon();
+
+        themeToggleBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.remove('light');
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+            updateToggleIcon();
         });
     </script>
 </body>
