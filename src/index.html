@@ -216,11 +216,14 @@
                 <img src="assets/creaciones.png" alt="Inversiones Jojo Logo" class="h-10 w-auto object-contain rounded-lg" />
                 Inversiones Jojo
             </a>
-            <nav class="hidden md:flex gap-8 font-label-md text-label-md">
-                <a class="text-[var(--text-muted)] hover:text-[#bc13fe] transition-colors duration-200"
+            <nav id="navbar-links" class="hidden md:flex gap-8 font-label-md text-label-md">
+                <a class="nav-link text-[#bc13fe] border-b-2 border-[#bc13fe] pb-1 transition-all duration-200"
+                    href="#">Inicio</a>
+                <a class="nav-link text-[var(--text-muted)] hover:text-[#bc13fe] transition-colors duration-200"
                     href="#services">Servicios</a>
-                <a class="text-[#bc13fe] border-b-2 border-[#bc13fe] pb-1" href="#portfolio">Galería</a>
-                <a class="text-[var(--text-muted)] hover:text-[#bc13fe] transition-colors duration-200"
+                <a class="nav-link text-[var(--text-muted)] hover:text-[#bc13fe] transition-colors duration-200"
+                    href="#portfolio">Galería</a>
+                <a class="nav-link text-[var(--text-muted)] hover:text-[#bc13fe] transition-colors duration-200"
                     href="#contacto">Contacto</a>
             </nav>
             <div class="flex items-center gap-4">
@@ -661,6 +664,47 @@ void main() {
 
             document.querySelectorAll('.fade-in-up').forEach((element) => {
                 observer.observe(element);
+            });
+
+            // Navegación menú activo dinámico (Scroll Spy)
+            const navLinks = document.querySelectorAll('#navbar-links .nav-link');
+            const secServices = document.getElementById('services');
+            const secPortfolio = document.getElementById('portfolio');
+            const secContacto = document.getElementById('contacto');
+
+            function setActiveLink(activeLink) {
+                navLinks.forEach(link => {
+                    link.classList.remove('text-[#bc13fe]', 'border-b-2', 'border-[#bc13fe]', 'pb-1');
+                    link.classList.add('text-[var(--text-muted)]', 'hover:text-[#bc13fe]', 'transition-colors', 'duration-200');
+                });
+                if (activeLink) {
+                    activeLink.classList.add('text-[#bc13fe]', 'border-b-2', 'border-[#bc13fe]', 'pb-1');
+                    activeLink.classList.remove('text-[var(--text-muted)]', 'hover:text-[#bc13fe]');
+                }
+            }
+
+            function updateActiveOnScroll() {
+                const scrollPos = window.scrollY + 150; // offset para disparadores
+
+                if (secContacto && (scrollPos >= secContacto.offsetTop || (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50)) {
+                    setActiveLink(navLinks[3]);
+                } else if (secPortfolio && scrollPos >= secPortfolio.offsetTop) {
+                    setActiveLink(navLinks[2]);
+                } else if (secServices && scrollPos >= secServices.offsetTop) {
+                    setActiveLink(navLinks[1]);
+                } else {
+                    setActiveLink(navLinks[0]); // Inicio
+                }
+            }
+
+            window.addEventListener('scroll', updateActiveOnScroll);
+            updateActiveOnScroll(); // Ejecutar al inicio
+
+            // Clic directo
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    setActiveLink(link);
+                });
             });
         });
     </script>
