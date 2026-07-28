@@ -70,7 +70,7 @@
             class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-max-width mx-auto">
             <a class="font-headline-md text-headline-md font-bold text-[var(--text-title)] tracking-tighter flex items-center gap-2 transition-colors duration-300"
                 href="#">
-                <img src="assets/creaciones.png" alt="Inversiones Jojo Logo"
+                <img src="assets/logo.png" alt="Inversiones Jojo Logo"
                     class="h-10 w-auto object-contain rounded-lg" width="40" height="40" />
                 Inversiones Jojo
             </a>
@@ -243,66 +243,58 @@ void main() {
             <h2 class="font-headline-lg text-headline-lg text-[var(--text-title)] transition-colors duration-300">
                 Servicios Técnicos</h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Service Card 1 -->
-            <div
-                class="border border-[var(--card-border)] p-8 hover:border-[var(--card-hover-border)] transition-colors duration-300 bg-[var(--card-bg)] backdrop-blur-sm group fade-in-up">
-                <div
-                    class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
-                    <span aria-hidden="true" class="material-symbols-outlined" data-icon="category">category</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Service Card 1: Prototipos Rápidos -->
+            <div class="relative group overflow-hidden border border-[var(--card-border)] fade-in-up">
+                <div class="aspect-[4/5] bg-gray-900 w-full relative">
+                    <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                        alt="Prototipos Rápidos"
+                        loading="lazy" src="assets/servicio_prototipos.png" />
                 </div>
-                <h3
-                    class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">
-                    Figuras &amp; Arte</h3>
-                <p
-                    class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">
-                    Piezas de colección y decorativas de
-                    alta fidelidad.</p>
+                <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/80 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <span aria-hidden="true" class="material-symbols-outlined text-[#bc13fe] mb-2 block" data-icon="speed">speed</span>
+                    <h3 class="font-headline-md text-headline-md text-white mb-2">Prototipos Rápidos</h3>
+                    <p class="font-body-md text-body-md text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Validación funcional en 24h para piezas técnicas, prototipos, merchandising y más.</p>
+                </div>
             </div>
-            <!-- Service Card 2 -->
-            <div class="border border-[var(--card-border)] p-8 hover:border-[var(--card-hover-border)] transition-colors duration-300 bg-[var(--card-bg)] backdrop-blur-sm group fade-in-up"
-                style="transition-delay: 0.1s;">
-                <div
-                    class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
-                    <span aria-hidden="true" class="material-symbols-outlined" data-icon="speed">speed</span>
+            <!-- Service Card 2: Asesorías 3D -->
+            <div class="relative group overflow-hidden border border-[var(--card-border)] fade-in-up" style="transition-delay: 0.1s;">
+                <div class="aspect-[4/5] bg-gray-900 w-full relative">
+                    <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                        alt="Asesorías 3D"
+                        loading="lazy" src="assets/servicio_asesorias.png" />
                 </div>
-                <h3
-                    class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">
-                    Prototipos Rápidos</h3>
-                <p
-                    class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">
-                    Validación funcional en 24h para
-                    ingenierías.</p>
+                <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/80 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <span aria-hidden="true" class="material-symbols-outlined text-[#bc13fe] mb-2 block" data-icon="support_agent">support_agent</span>
+                    <h3 class="font-headline-md text-headline-md text-white mb-2">Asesorías 3D</h3>
+                    <p class="font-body-md text-body-md text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Optimización de diseños para fabricación eficiente.</p>
+                </div>
             </div>
-            <!-- Service Card 3 -->
-            <div class="border border-[var(--card-border)] p-8 hover:border-[var(--card-hover-border)] transition-colors duration-300 bg-[var(--card-bg)] backdrop-blur-sm group fade-in-up"
-                style="transition-delay: 0.2s;">
-                <div
-                    class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
-                    <span aria-hidden="true" class="material-symbols-outlined" data-icon="foundation">foundation</span>
+            <!-- Service Card 3: Figuras & Arte -->
+            <div class="relative group overflow-hidden border border-[var(--card-border)] fade-in-up" style="transition-delay: 0.2s;">
+                <div class="aspect-[4/5] bg-gray-900 w-full relative">
+                    <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                        alt="Figuras & Arte"
+                        loading="lazy" src="assets/servicio_figuras.png" />
                 </div>
-                <h3
-                    class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">
-                    Maquetas a Escala</h3>
-                <p
-                    class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">
-                    Arquitectura y detalle milimétrico
-                    estructural.</p>
+                <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/80 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <span aria-hidden="true" class="material-symbols-outlined text-[#bc13fe] mb-2 block" data-icon="category">category</span>
+                    <h3 class="font-headline-md text-headline-md text-white mb-2">Figuras &amp; Arte</h3>
+                    <p class="font-body-md text-body-md text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Modelado e impresión de piezas de colección y decorativas de alta fidelidad.</p>
+                </div>
             </div>
-            <!-- Service Card 4 -->
-            <div class="border border-[var(--card-border)] p-8 hover:border-[var(--card-hover-border)] transition-colors duration-300 bg-[var(--card-bg)] backdrop-blur-sm group fade-in-up"
-                style="transition-delay: 0.3s;">
-                <div
-                    class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
-                    <span aria-hidden="true" class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+            <!-- Service Card 4: Moldes para Negocios -->
+            <div class="relative group overflow-hidden border border-[var(--card-border)] fade-in-up" style="transition-delay: 0.3s;">
+                <div class="aspect-[4/5] bg-gray-900 w-full relative">
+                    <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                        alt="Moldes para Negocios"
+                        loading="lazy" src="assets/servicio_moldes.png" />
                 </div>
-                <h3
-                    class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">
-                    Asesorías 3D</h3>
-                <p
-                    class="font-body-md text-body-md text-[var(--text-muted)] font-label-md transition-colors duration-300">
-                    Optimización de diseños para
-                    fabricación eficiente.</p>
+                <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/80 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <span aria-hidden="true" class="material-symbols-outlined text-[#bc13fe] mb-2 block" data-icon="view_in_ar">view_in_ar</span>
+                    <h3 class="font-headline-md text-headline-md text-white mb-2">Moldes para Negocios</h3>
+                    <p class="font-body-md text-body-md text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Moldes personalizados para producción en serie.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -384,7 +376,7 @@ void main() {
             <div class="fade-in-up">
                 <a class="font-headline-md text-headline-md text-[var(--text-title)] mb-6 flex items-center gap-2 transition-colors duration-300"
                     href="#">
-                    <img src="assets/creaciones.png" alt="Inversiones Jojo Logo"
+                    <img src="assets/logo.png" alt="Inversiones Jojo Logo"
                         class="h-8 w-auto object-contain rounded-lg" width="32" height="32" />
                     Inversiones Jojo
                 </a>
