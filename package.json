@@ -1,0 +1,31 @@
+{
+  "name": "creacionesjojo-website",
+  "version": "1.0.0",
+  "description": "Este proyecto es el sitio web profesional de **Inversiones Jojo** (también conocido como Creaciones Jojo), construido con HTML5, Tailwind CSS (cargado vía CDN) y JavaScript vanilla con animaciones interactivas en WebGL/Three.js. Utiliza un contenedor Docker para el entorno de desarrollo local y está configurado para desplegarse de manera directa y automática en Vercel.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "npx tailwindcss -i ./src/input.css -o ./src/assets/styles.css",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maliaga-pantoja/creacionesjojo-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/maliaga-pantoja/creacionesjojo-website/issues"
+  },
+  "homepage": "https://github.com/maliaga-pantoja/creacionesjojo-website#readme",
+  "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.11",
+    "autoprefixer": "^10.5.4",
+    "husky": "^9.1.7",
+    "postcss": "^8.5.23",
+    "tailwindcss": "^3.4.19"
+  }
+}

@@ -50,17 +50,14 @@
         })(window, document, "clarity", "script", "xm82n2e49j");
     </script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://ajax.googleapis.com">
     <!-- Material Symbols -->
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <!-- Tailwind Config -->
-    <script src="assets/tailwind.config.js"></script>
+    <!-- Tailwind CSS (Compilado localmente) -->
     <!-- Estilos propios -->
     <link rel="stylesheet" href="assets/styles.css" />
 </head>
@@ -74,7 +71,7 @@
             <a class="font-headline-md text-headline-md font-bold text-[var(--text-title)] tracking-tighter flex items-center gap-2 transition-colors duration-300"
                 href="#">
                 <img src="assets/creaciones.png" alt="Inversiones Jojo Logo"
-                    class="h-10 w-auto object-contain rounded-lg" />
+                    class="h-10 w-auto object-contain rounded-lg" width="40" height="40" />
                 Inversiones Jojo
             </a>
             <nav id="navbar-links" class="hidden md:flex gap-8 font-label-md text-label-md">
@@ -94,7 +91,7 @@
                 <button id="theme-toggle"
                     class="w-10 h-10 border border-[var(--icon-border)] flex items-center justify-center text-[var(--icon-color)] hover:text-[#bc13fe] hover:border-[#bc13fe] transition-all duration-300"
                     aria-label="Cambiar tema">
-                    <span class="material-symbols-outlined text-xl" id="theme-toggle-icon">dark_mode</span>
+                    <span aria-hidden="true" class="material-symbols-outlined text-xl" id="theme-toggle-icon">dark_mode</span>
                 </button>
                 <a class="bg-[#bc13fe] text-white px-6 py-2 rounded-none font-label-md text-label-md uppercase tracking-wider hover:bg-[#7a00c2] transition-colors duration-200 border border-[#bc13fe] text-center"
                     href="https://wa.me/51902805278?text=Hola,%20quiero%20saber%20como%20funciona%20el%20servicio%20de%20impresion3d"
@@ -118,7 +115,7 @@
             <div class="w-64 h-64 mb-8">
                 <!-- STITCH_SHADER_START:ANIMATION_10 class="w-full h-full" -->
                 <div class="w-full h-full" style="display:block;">
-                    <!-- <canvas id="shader-canvas-ANIMATION_10" style="display:block;width:100%;height:100%"></canvas> -->
+
                     <script>
                         (function () {
                             const canvas = document.getElementById('shader-canvas-ANIMATION_10');
@@ -252,7 +249,7 @@ void main() {
                 class="border border-[var(--card-border)] p-8 hover:border-[var(--card-hover-border)] transition-colors duration-300 bg-[var(--card-bg)] backdrop-blur-sm group fade-in-up">
                 <div
                     class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
-                    <span class="material-symbols-outlined" data-icon="category">category</span>
+                    <span aria-hidden="true" class="material-symbols-outlined" data-icon="category">category</span>
                 </div>
                 <h3
                     class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">
@@ -267,7 +264,7 @@ void main() {
                 style="transition-delay: 0.1s;">
                 <div
                     class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
-                    <span class="material-symbols-outlined" data-icon="speed">speed</span>
+                    <span aria-hidden="true" class="material-symbols-outlined" data-icon="speed">speed</span>
                 </div>
                 <h3
                     class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">
@@ -282,7 +279,7 @@ void main() {
                 style="transition-delay: 0.2s;">
                 <div
                     class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
-                    <span class="material-symbols-outlined" data-icon="foundation">foundation</span>
+                    <span aria-hidden="true" class="material-symbols-outlined" data-icon="foundation">foundation</span>
                 </div>
                 <h3
                     class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">
@@ -297,7 +294,7 @@ void main() {
                 style="transition-delay: 0.3s;">
                 <div
                     class="w-12 h-12 mb-6 border border-[var(--icon-border)] flex items-center justify-center group-hover:accent-border group-hover:text-[#bc13fe] transition-colors text-[var(--icon-color)]">
-                    <span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+                    <span aria-hidden="true" class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
                 </div>
                 <h3
                     class="font-headline-md text-headline-md text-[var(--text-title)] mb-3 transition-colors duration-300">
@@ -324,7 +321,7 @@ void main() {
                 </div>
                 <a class="font-label-md text-label-md text-[#bc13fe] hover:text-[var(--text-title)] transition-colors flex items-center gap-2"
                     href="#">
-                    Ver Todo <span class="material-symbols-outlined text-sm"
+                    Ver Todo <span aria-hidden="true" class="material-symbols-outlined text-sm"
                         data-icon="arrow_forward">arrow_forward</span>
                 </a>
             </div>
@@ -334,7 +331,7 @@ void main() {
                     <div class="aspect-[4/5] bg-gray-900 w-full relative">
                         <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
                             alt="A high-contrast macro photograph of a 3D printed industrial gear prototype, showcasing perfect layer lines and precision engineering. Dark industrial setting with dramatic top-down studio lighting casting sharp shadows. The material appears to be a sleek dark grey resin with high detail accuracy. Minimalist, technical aesthetic emphasizing manufacturing quality."
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvj5kicdUhXMRBFGPwWe2Hrzx3pUUTTSYvMTeJRkt-ku-lWKkMa6LV54zboJVhn3CAkQCDFkwa-4zb9ILV9vKusBti_RA3qcULdNKMUortfELcZKrJnf_LaPO7U6sT2jzliK7C4rehpdYKe0GyB7XiTbWgbnPFQSUNZ9vSiwtPvFdcWqck4tDBrgNwjERPgNjz88_4d6Zk_JQpkg48CTxKypieeMebnn_qQdwhdh0YC3ejJ1ytwwS-mali02ybs2H82dopDCoyumeD" />
+                            loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvj5kicdUhXMRBFGPwWe2Hrzx3pUUTTSYvMTeJRkt-ku-lWKkMa6LV54zboJVhn3CAkQCDFkwa-4zb9ILV9vKusBti_RA3qcULdNKMUortfELcZKrJnf_LaPO7U6sT2jzliK7C4rehpdYKe0GyB7XiTbWgbnPFQSUNZ9vSiwtPvFdcWqck4tDBrgNwjERPgNjz88_4d6Zk_JQpkg48CTxKypieeMebnn_qQdwhdh0YC3ejJ1ytwwS-mali02ybs2H82dopDCoyumeD" />
                     </div>
                     <div
                         class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/80 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -350,7 +347,7 @@ void main() {
                     <div class="aspect-[4/5] bg-gray-900 w-full relative">
                         <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
                             alt="An architectural scale model of a modern minimalist building, created using precise laser cutting and 3D printing techniques. Placed on a matte black cutting mat with grid lines. Sharp, cold white lighting highlights the precise geometric angles and structural integrity of the white PLA material. Highly technical, clean, and professional architectural presentation."
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUB7xLQ83SdsB0hZuSk7jeZHKfFy24pCli0cch34IHld3X7rNyml9kd6cdB67e_pKH9s4lBaKdT6Z--dTaylFKIsu08dMXdf_F4lbcGT3klaFw4mUdvYe1oZcbZFTJmReveOuq3EPmNDyGnlfi1yumcB9CtYGP6m01BjLbqSTcmNJmsdxBVEkR3ISov_TwJbWCqWStKZxj6m1lMXKzattrR52ndjrAWzL4NQ6tOd3K6sA3_EgoR-HpqbqHkvMlWE4b1SqqjU4fZ_Gc" />
+                            loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUB7xLQ83SdsB0hZuSk7jeZHKfFy24pCli0cch34IHld3X7rNyml9kd6cdB67e_pKH9s4lBaKdT6Z--dTaylFKIsu08dMXdf_F4lbcGT3klaFw4mUdvYe1oZcbZFTJmReveOuq3EPmNDyGnlfi1yumcB9CtYGP6m01BjLbqSTcmNJmsdxBVEkR3ISov_TwJbWCqWStKZxj6m1lMXKzattrR52ndjrAWzL4NQ6tOd3K6sA3_EgoR-HpqbqHkvMlWE4b1SqqjU4fZ_Gc" />
                     </div>
                     <div
                         class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/80 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -366,7 +363,7 @@ void main() {
                     <div class="aspect-[4/5] bg-gray-900 w-full relative">
                         <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
                             alt="A highly detailed conceptual art figure, 3D printed with ultra-high resolution resin. The figure has a futuristic, slightly cybernetic design. Photographed against a pure black background with dramatic rim lighting highlighting the flawless surface finish and intricate details. The aesthetic is premium, dark, and highly focused on the quality of the fabrication."
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5tVDHdlQeajYWGy9VOWvbBD-tuisM-ip3S8ZGnbeJBMbwoZEWt6HtXOHni5KEMQGvD1qLY3oXNr8PEpTBDwY3W1LaC814LvFD3a1D_jT7t73uXH1Q56YdiNpe8QrRdgT34ohAM3YJ7MlrDtTE1NSa8hGRM7dJY1F6-wTW9CILemB_MF3fJP29cZ23k5IQsO0OpJtMT7kThVEeIGSryJF0Smi16zEmqb6V1v8x_JJsPjt3TzpQq9Mw8ClNC30CY0DAEmyuaSAreiFN" />
+                            loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5tVDHdlQeajYWGy9VOWvbBD-tuisM-ip3S8ZGnbeJBMbwoZEWt6HtXOHni5KEMQGvD1qLY3oXNr8PEpTBDwY3W1LaC814LvFD3a1D_jT7t73uXH1Q56YdiNpe8QrRdgT34ohAM3YJ7MlrDtTE1NSa8hGRM7dJY1F6-wTW9CILemB_MF3fJP29cZ23k5IQsO0OpJtMT7kThVEeIGSryJF0Smi16zEmqb6V1v8x_JJsPjt3TzpQq9Mw8ClNC30CY0DAEmyuaSAreiFN" />
                     </div>
                     <div
                         class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/80 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -388,7 +385,7 @@ void main() {
                 <a class="font-headline-md text-headline-md text-[var(--text-title)] mb-6 flex items-center gap-2 transition-colors duration-300"
                     href="#">
                     <img src="assets/creaciones.png" alt="Inversiones Jojo Logo"
-                        class="h-8 w-auto object-contain rounded-lg" />
+                        class="h-8 w-auto object-contain rounded-lg" width="32" height="32" />
                     Inversiones Jojo
                 </a>
                 <p
@@ -426,16 +423,16 @@ void main() {
                     Contacto</h4>
                 <ul class="space-y-4 font-label-md text-[var(--text-muted)] transition-colors duration-300">
                     <li class="flex items-start gap-4">
-                        <span class="material-symbols-outlined text-[#d9480f] mt-1"
+                        <span aria-hidden="true" class="material-symbols-outlined text-[#d9480f] mt-1"
                             data-icon="location_on">location_on</span>
                         <span>Jirón Libertad 1545,<br />Pueblo Libre, Lima, Perú</span>
                     </li>
                     <li class="flex items-center gap-4">
-                        <span class="material-symbols-outlined text-[#bc13fe]" data-icon="phone">phone</span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-[#bc13fe]" data-icon="phone">phone</span>
                         <span>+51 902 805 278</span>
                     </li>
                     <li class="flex items-center gap-4">
-                        <span class="material-symbols-outlined text-[#bc13fe]" data-icon="mail">mail</span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-[#bc13fe]" data-icon="mail">mail</span>
                         <span>ventas@inversionesjojo.com</span>
                     </li>
                 </ul>

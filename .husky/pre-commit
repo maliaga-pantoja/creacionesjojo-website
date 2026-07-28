@@ -1,0 +1,2 @@
+npm run build:css
+git add src/assets/styles.css
